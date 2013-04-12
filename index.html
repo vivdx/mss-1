@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Meaningful Spatial Statistics Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This portal allows users to annotate and search datasets for spatial statistics.">
+    <meta name="author" content="Christoph Stasch">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 60px;
+      }
+
+      /* Custom container */
+      .container {
+        margin: 0 auto;
+        max-width: 1000px;
+      }
+      .container > hr {
+        margin: 60px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 60px 0;
+        padding: 30px;
+        background-color: LightGray;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 60px;
+        line-height: 1;
+      }
+      .jumbotron .lead {
+        font-size: 24px;
+        line-height: 1.25;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+
+
+      /* Customize the navbar links to be fill the entire space of the .navbar */
+      .navbar .navbar-inner {
+        padding: 0;
+      }
+      .navbar .nav {
+        margin: 0;
+        display: table;
+        width: 100%;
+      }
+      .navbar .nav li {
+        display: table-cell;
+        width: 1%;
+        float: none;
+      }
+      .navbar .nav li a {
+        font-weight: bold;
+        text-align: center;
+        border-left: 1px solid rgba(255,255,255,.75);
+        border-right: 1px solid rgba(0,0,0,.1);
+      }
+      .navbar .nav li:first-child a {
+        border-left: 0;
+        border-radius: 3px 0 0 3px;
+      }
+      .navbar .nav li:last-child a {
+        border-right: 0;
+        border-radius: 0 3px 3px 0;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="masthead">
+        <h3 class="muted">Meaningful Spatial Statistics Portal</h3>
+        <!---<div class="tabbable"> 
+          <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
+          <li><a href="#tab2" data-toggle="tab">Section 2</a></li>
+          </ul>
+          <div class="tab-content">
+          <div class="tab-pane active" id="tab1">
+          <p>I'm in Section 1.</p>
+          </div>
+          <div class="tab-pane" id="tab2">
+          <p>Howdy, I'm in Section 2.</p>
+        </div>
+        </div>
+      </div>-->
+
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              <ul class="nav">
+                <li class="active"><a href="#" onClick="showHomePanel()">Home</a></li>
+                <li><a href="#AddContainer" onClick="showAddPanel()">Add Dataset</a></li>
+                <li><a href="#" onClick="showAddPanel()">Browser Datasets</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <h1>Meaningful Spatial Statistics</h1>
+        <p class="lead">This portal allows you to annotate datasets for spatial statistical analysis in order to provide additional information whether the dataset is a point pattern, geostatistical data, lattice data, or trajectory data. Depending on the type of data, statistical procedures such as spatial interpolation are <i>meaningful</i> or not. To find out more about the different data types and meaninfgul statistical analysis, click below.</p>
+        <a class="btn btn-large btn-success" href="#">More information here!</a>
+      </div>
+
+      <div id="AddContainer" class="jumbotron" style="display: none;">
+        <h1>Adding Meaningful Spatial Statistics</h1>
+        <p class="lead">This portal allows you to annotate datasets for spatial statistical analysis in order to provide additional information whether the dataset is a point pattern, geostatistical data, lattice data, or trajectory data. Depending on the type of data, statistical procedures such as spatial interpolation are <i>meaningful</i> or not. To find out more about the different data types and meaninfgul statistical analysis, click below.</p>
+        <a class="btn btn-large btn-success" href="#">More information here!</a>
+      </div>
+
+      <hr>
+
+      <!-- Example row of columns -->
+      <div class="row-fluid">
+        <div class="span4">
+          <h2>Add Datasets</h2>
+          <p>You want to publish your datasets for spatial statistical analyis in the Web and ensure that the data is analysed using appropriate methods? Then add your dataset to this portal and annotate it with additional information. </p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h2>Browse Datasets</h2>
+          <p>You are searching for a particular point pattern in a certain area? Then browse through our datasets!</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+       </div>
+        <div class="span4">
+          <h2>Learn More about Semantics</h2>
+          <p>The portal utilizes common Semantic Web technologies. It stores the annotations as linked data in the RDF format. The semantics of the concepts are defined in the OWL ontology. If you are not familiar with these technologies, we provide an overview for you.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="footer">
+        <p>&copy; Company 2013</p>
+      </div>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/application.js"></script>
+
+  </body>
+</html>
