@@ -12,6 +12,8 @@ function showAddPanel(){
 	setPanelActive("AddPanel");
 }
 
+
+
 /**
 *  method for setting the panel on active
 *
@@ -98,48 +100,5 @@ function arrayContains(a, obj) {
     return false;
 }
 
-/**
- * Create an instance of an entry which represents an entry in the statitics portal
- *
- * @constructor
- * @this {Entry}
- * @param  {string} sourceURL
- * @param  {string} dataType
- * @param  {string} license
- * @param  {string} phenomenon
- * @param  {bbox} obsWindow
- */
-function Entry(sourceURL,dataType,license,phenomenon,obsWindow){
-	this.sourceURL=sourceURL;
-	this.dataType=dataType;
-	this.license=license;
-	this.phenomenon=phenomenon;
-	this.obsWindow=obsWindow;
 
-
-	/**
-	 * serialises the entry object to RDF
-	 * 
-	 * @return {string} string containing the RDF output
-	 */
-	function toRDF(){
-		var rdfOutput;
-		return rdfOutput;
-
-	}
-}
-
-/**
- * Creates a Bbox object that represents observed window
- *
- * @constructor
- * @this{Bbox}
- * @param  {number} minx
- * @param  {number} miny
- * @param  {number} maxx
- * @param  {number} maxy
- */
-function Bbox(minx,miny,maxx,maxy){
-
-}
 
