@@ -1,0 +1,10 @@
+{
+	"sourceURL": "http://mySourceURL.com",
+	"format": "CSV",
+	"dataType": "Point Pattern",
+	"license": "GPLv2",
+	"phenomenon": "http://sweetURL.com",
+	"obsWindowWKT": "POLYGON((-0.11363983154296875 51.5027589576403,-0.11363983154296875 51.51867760878029,-0.05630493164062499 51.51867760878029,-0.05630493164062499 51.5027589576403,-0.11363983154296875 51.5027589576403))",
+	"obsWindowTempStart": "2013-05-06T18:45:27.000Z",
+	"obsWindowTempEnd": "2013-05-07T18:45:27.000Z"
+}

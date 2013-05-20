@@ -12,28 +12,18 @@
     <link href="css/application.css" rel="stylesheet"/>
     <link href="css/bootstrap-responsive.css" rel="stylesheet"/>
     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
-    <link href="css/leaflet.css" rel="stylesheet"/>
-    <link href="css/leaflet.draw.css" rel="stylesheet"/>
+    <link href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" rel="stylesheet"/>
     
     <!-- external scripts-->
-    <script src="lib/jquery-1.9.1.js"></script>
-    <!-- datetimepicker is used for adding observed temporal window in add dataset form-->
-    <script src="lib/bootstrap-datetimepicker.min.js"></script>
-    <!--bootstrap is used for the nice css appearance and look and feel -->
-    <script src="lib/bootstrap.js"></script>
-    <!--bootstrapx-clickover is used for the information popups-->
-    <script src="lib/bootstrapx-clickover.js"></script>
-     <!--leaflet for map panels-->
-    <script src="lib/leaflet.js"></script>
-    <!--lib for drawing polygons-->
-    <script src="lib/leaflet.draw.js"></script>
-     <!--leaflet to WKT script-->
-     <script src="https://gist.github.com/bmcbride/4248238/raw/cf258882c175bbdc74be0281703278f48a04405d/LeafletToWKT.js"></script>
-    
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrapx-clickover.js"></script>
+     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
 
     <!-- MSS scripts-->
     <script src="js/application.js"></script>
-    <script src="js/model.js"></script>
     <script src="js/event.js"></script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -55,7 +45,7 @@
                 <li id="NavHome"><a href="#" onClick="showHomePanel()">Home</a></li>
                 <li id="NavInfo"><a href="#" onClick="showInfoPanel()">Idea</a></li>
                 <li id="NavAdd"><a href="#" onClick="showAddPanel()">Add Dataset</a></li>
-                <li id="NavBrowse"><a href="#" onClick="showBrowsePanel()">Browse Datasets</a></li>
+                <li id="NavBrowse"><a href="#" onClick="showMapPanel()">Browse Datasets</a></li>
                 <li id="NavTheories"><a href="#" onClick="showTheoriesPanel()">Theories and Tools</a></li>
                 <li id="NavContact"><a href="#" onClick="showContactPanel()">Contact</a></li>
               </ul>
@@ -149,7 +139,7 @@
            <div class="control-group">
             <label class="control-label" for="VarType">Statistical Data Type</label>
             <div class="controls">
-              <select id="VarType">
+              <select>
                 <option>Point Pattern</option>
                 <option>Geostatistical Data</option>
                 <option>Lattice Data</option>
@@ -168,49 +158,26 @@
             </div>
            </div>
 
-           <!--License-->
-           <div class="control-group">
-            <label class="control-label" for="PhenomenonUri">Phenomenon URI</label>
-            <div class="controls">
-              <input class="input-xlarge" type="text" id="PhenomenonUri" placeholder="http://sweet.jpl.nasa.gov/2.2/quanTemperature.owl#DryBulbTemperature">
-              <span class="help-inline" id="phenUriInfo" rel="clickover"><i class="icon-info-sign"></i></span>
-            </div>
-           </div>
-
           <!--Observed Spatial Window-->
            <div class="control-group">
             <label class="control-label" for="obsWinSp">Observed Spatial Window</label>
             <div id="obsWinSp" class="well span8">
-              <div id="wktPanel" class="control-group">
+              <div class="control-group">
                 <label class="control-label" for="wktObsWin">WKT Polygon</label>
                 <div class="controls">
-                  <input class="input-xxlarge" type="text" id="wktObsWin" placeholder="POLYGON((30 10, 10 20, 20 40, 40 40, 30 10))"/>
+                  <input class="input-xxlarge" type="text" id="wktObsWin" placeholder="POLYGON((30 10, 10 20, 20 40, 40 40, 30 10))">
                   <span class="help-inline" id="wktInfo" rel="clickover"><i class="icon-info-sign"></i></span>
                 </div>
               </div>
-              <div id="srsPanel" class="control-group">
-                <label class="control-label" for="EPSGCode">EPSG Code</label>
-                <div class="controls">
-                  <input class="input" type="text" id="EPSGcode" pattern="[0-9]{4}" placeholder="4326"/>
-                  <span class="help-inline" id="epsgInfo" rel="clickover"><i class="icon-info-sign"></i></span>
-                </div>
-              </div>
-              <div id="obsWinDefBtn" class="control-group">
+              <div class="control-group">
                 <label class="control-label" for="polyDefButton">Define in Map</label>
                 <div class="controls">
-                  <button id="mapPanelBtn" type="button" class="btn" data-toggle="collapse" data-target="#mapPanelContainer">Open Map Panel</button>
+                    <button id="mapPanelBtn" type="button" class="btn">Open Map Panel</button>
                     <span class="help-inline" id="mapDefInfo" rel="clickover"><i class="icon-info-sign"></i></span>
-                  </div>
-                    <!-- Map Panel for Polygon Definition -->
-                  <div id="mapPanelContainer" class="collapse span6 top-buffer">
-                    <p>Please define the boundary of the polygon representing the observed window by double-clicking in the map. Click the button "Save Polygon" to save the polygon. The Polygon should appear in the WKT Polygon definition.</p>
-                    <div id="mapPanelAdd" class="map"></div>
-                    <button id="savePolygonBtn" type="button" class="btn btn-primary top-buffer">Save polygon</button>
-                  </div>
-                
                 </div>
               </div>
             </div>
+           </div>
 
 
 
@@ -253,8 +220,12 @@
         <hr>
       </div>
 
-      
-
+      <!--*****************************-->
+      <!-- Map Panel for Polygon Definition -->
+      <!--*****************************-->
+      <div id="mapPanel" class="span12" style="display:none;">
+              <div id="mapPanelAdd" class="map"></div>
+          </div>
       <!--*****************************-->
       <!-- Browse Panel -->
       <!--*****************************-->

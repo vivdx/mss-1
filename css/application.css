@@ -1,0 +1,9 @@
+.border-form{
+	padding:10px;
+border-style:solid;
+border-width:2px;
+border-color:#C0C0C0;
+border-radius: 6px;
+}
+
+.top-buffer { margin-top:20px; }
