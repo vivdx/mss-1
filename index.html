@@ -136,6 +136,27 @@
             </div>
            </div>
 
+           <!--Statistical Variable Type-->
+           <div class="control-group">
+            <label class="control-label" for="VarTypeID">Statistical Data Type</label>
+            <div class="controls">
+              <select id="VarTypeID">
+                <option value="POINT_PATTERN">Point Pattern</option>
+                <option value="GEOSTATISTICAL">Geostatistical Data</option>
+                <option value="LATTICE">Lattice Data</option>
+                <option value="TRAJECTORY">Trajectories</option>
+              </select>
+              <span class="help-inline" id="varTypeInfo" rel="clickover"><i class="icon-info-sign"></i></span>
+            </div>
+           </div>
+
+           <div class="controls">
+              <button id="addInfoBtn" type="button" class="btn" data-toggle="collapse" data-target="#additionalInfoContainer">Add additional information</button>
+              <span class="help-inline" id="mapDefInfo" rel="clickover"><i class="icon-info-sign"></i></span>
+           </div>
+
+           <div id="additionalInfoContainer" class="collapse span12 top-buffer">
+
            <!--File Format-->
            <div class="control-group">
             <label class="control-label" for="Format">Format</label>
@@ -145,20 +166,6 @@
             </div>
            </div>
 
-           <!--Statistical Variable Type-->
-           <div class="control-group">
-            <label class="control-label" for="VarType">Statistical Data Type</label>
-            <div class="controls">
-              <select id="VarType">
-                <option>Point Pattern</option>
-                <option>Geostatistical Data</option>
-                <option>Lattice Data</option>
-                <option>Trajectories</option>
-              </select>
-              <span class="help-inline" id="varTypeInfo" rel="clickover"><i class="icon-info-sign"></i></span>
-            </div>
-           </div>
-           
            <!--License-->
            <div class="control-group">
             <label class="control-label" for="License">License</label>
@@ -168,7 +175,7 @@
             </div>
            </div>
 
-           <!--License-->
+           <!--Phenomenon -->
            <div class="control-group">
             <label class="control-label" for="PhenomenonUri">Phenomenon URI</label>
             <div class="controls">
@@ -178,7 +185,7 @@
            </div>
 
           <!--Observed Spatial Window-->
-           <div class="control-group">
+           <div class="control-group" id="obsWinSpContainer">
             <label class="control-label" for="obsWinSp">Observed Spatial Window</label>
             <div id="obsWinSp" class="well span8">
               <div id="wktPanel" class="control-group">
@@ -215,7 +222,7 @@
 
 
           <!--Observed Temporal Window-->
-           <div class="control-group">
+           <div class="control-group" id="obsWinTempContainer">
             <label class="control-label" for="obsWinTemp">Observed Temporal Window</label>
             <div id="obsWinTemp" class="well span6">
               <div class="control-group">
@@ -244,7 +251,7 @@
               </div>
             </div>
            </div>
-
+        </div>
            <div class="form-actions">
               <button id="entrySubmitButton" type="submit" class="btn btn-primary">Upload Information</button>
               <button id="entryCancelButton" type="button" class="btn">Cancel</button>
@@ -252,6 +259,7 @@
          </form>
         <hr>
       </div>
+      
 
       
 
@@ -260,10 +268,15 @@
       <!--*****************************-->
       <div id="BrowsePanel" class="span12" style="display:none;">
         <h1>Browse Meaningful Spatial Statistics</h1>
-        <hr>
-        <p>This portal allows you to annotate datasets for spatial statistical analysis in order to provide additional information whether the dataset is a point pattern, geostatistical data, lattice data, or trajectory data. Depending on the type of data, statistical procedures such as spatial interpolation are <i>meaningful</i> or not. To find out more about the different data types and meaninfgul statistical analysis, click below.</p>
-        <hr>
-        <a class="btn btn-large btn-success" href="#">More information here!</a>
+        <h3>SPARQL endpoint</h3>
+        <p> The metadata about statistical datasets is stored in the Linked Open Data cloud in the <abbr title="Resource Description Framework">RDF</abbr> format. The databases in the Linked Open Data cloud are called triple stores and the common query language to retrieve the linked data is called SPARQL. You can retrieve information about the statistical datasets by sending a SPARQL query to the following endpoint of our triple store:</p>
+        <p><a href="http://giv-mss.uni-muenster.de:8081/sparql">http://giv-mss.uni-muenster.de:8081/sparql</a></p>
+        <h3>SPARQL query form</h3>
+        <p>You can also use this form to issue your SPARQL queries:</p>
+        <p><a href="http://giv-mss.uni-muenster.de:8081/parliament/query.jsp">http://giv-mss.uni-muenster.de:8081/parliament/query.jsp</a></p>
+        <h3>SPARQL package for R</h3>
+        <p>There is also the <a href="http://cran.r-project.org/web/packages/SPARQL/">R SPARQL package</a> available allowing to directly issue SPARQL requests to a triple store from R and retrieving the results in R.</p>
+        <hr> 
       </div>
 
       <!--*****************************-->

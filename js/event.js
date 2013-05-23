@@ -5,6 +5,7 @@ $(document).ready(function(){
    */
   var mapAdd,mapBrowse,drawnItems;
   var mapPanelOpen = false;
+  var addInfoPanelOpen = false;
 
 /*
 Function that is invoked, when submit button in add dataset panel is clicked; 
@@ -12,7 +13,7 @@ Function that is invoked, when submit button in add dataset panel is clicked;
 $("#entrySubmitButton").click(function(){
 	var sourceUrl = $("#SourceURL").val();
   var format = $("#Format").val();
-  var varType = $("#VarType").val();
+  var varType = $("#VarTypeID").val();
   var license = $("#License").val();
   var phenUri = $("#PhenomenonUri").val();
   var wktObsWin = $("#wktObsWin").val();
@@ -20,23 +21,31 @@ $("#entrySubmitButton").click(function(){
   var endDate = $('#endpicker').data('datetimepicker').getDate();
   var entry = new Entry(sourceUrl,format,varType,license,phenUri,wktObsWin,beginDate,endDate);
 
-	window.alert("Dataset with SourceURL " + JSON.stringify(entry) + " has been added!");
-	}
-);
+  //posting the data to the Webapp that converts the data to RDF and inserts it to the Parliament server
+  jQuery.ajax({
+          url: "http://localhost:8080/tsproxy",
+          type: "POST",
+          data: JSON.stringify(entry),
+          contentType: "application/json"
+  })
+  .done(function() { alert("Entry successfully inserted!"); })
+  .fail(function(){alert("Error while inserting entry!")});
+});
 
 $("#savePolygonBtn").click(function(){
   var layers = drawnItems.getLayers();
   if (layers.length==1){
     $("#wktObsWin").val(toWKT(layers[0]));
+    $("#EPSGcode").val(4326);
     $("#mapPanelContainer").collapse("hide");
     $("#mapPanelBtn").text("Open Map Panel");
+
     mapPanelOpen=false;
   }
   else {
     alert("There needs to be exactly one rectangle or polygon defining the observed window!");
   }
-}
-);
+});
 
 /*
 * function that opens the map panel when the button is clicked
@@ -98,6 +107,40 @@ $("#mapPanelBtn").click(function(){
 	}
 );
 
+$("#addInfoBtn").click(function(){
+  if (addInfoPanelOpen){
+      $("#addInfoBtn").text("Add additional information");
+      addInfoPanelOpen=false;
+    }
+    /*
+    If map panel is closed and button is clicked, change button text to close map panel
+     */
+    else{
+      $("#addInfoBtn").text("Close additional information form");
+      addInfoPanelOpen=true;
+      if ($("#VarTypeID").val()=="POINT_PATTERN"){
+        $("#obsWinSpContainer").css("display","inline");
+        $("#obsWinTempContainer").css("display","inline");
+      }
+      else {
+        $("#obsWinSpContainer").css("display","none");
+        $("#obsWinTempContainer").css("display","none");
+      }
+    }
+  
+});
+
+$("#VarTypeID").change(function(){
+  if (addInfoPanelOpen && $("#VarTypeID").val()=="POINT_PATTERN"){
+    $("#obsWinSpContainer").css("display","inline");
+    $("#obsWinTempContainer").css("display","inline");
+  }
+  else if (addInfoPanelOpen) {
+    $("#obsWinSpContainer").css("display","none");
+    $("#obsWinTempContainer").css("display","none");
+  }
+});
+
 
 
 $(function() {
@@ -111,8 +154,6 @@ $(function() {
       language: 'en'
     });
   });
-
-
 
 /* 
 ***************************
@@ -139,5 +180,6 @@ $("#varTypeInfo").clickover({
 );
 
 
-
+//end $(document).ready(function(){
 });
+
