@@ -61,6 +61,47 @@ $("#savePolygonBtn").click(function(){
   }
 });
 
+$("#querySubmitButton").click(function(){
+  var datatype = $("#VarTypeIDSelector").val();
+  if (datatype=="GEOST"){
+        $.getJSON('http://localhost:8080/ts-proxy?datatype='+datatype, function(data) {
+          var entries = data.Entries;
+          $("#resultTable").remove();
+          $("#queryResultPanel").append(
+              $("<table></table>").addClass("table table-hover").attr("id", "resultTable").append(
+                $("<thead></thead>").append(
+                $("<tr></tr>")
+                  .append($("<td></td>").append($("<strong></strong>").text("Source URL")))
+                  .append($("<td></td>").append($("<strong></strong>").text("Phenomenon")))
+                  .append($("<td></td>").append($("<strong></strong>").text("License")))
+                  .append($("<td></td>").append($("<strong></strong>").text("Format")))
+                )
+              ));
+          $("#resultTable").append(
+            $("<tbody></tbody>").attr("id","resultTableBody")
+            );
+          for (i=0;i<entries.length;i++){
+            var entry = entries[i];
+            $("#resultTableBody").append($("<tr></tr>")
+                  .append($("<td></td>").text(entry.sourceURL))
+                  .append($("<td></td>").text(entry.phenomenon))
+                  .append($("<td></td>").text(entry.license))
+                  .append($("<td></td>").text(entry.format))
+                  );
+          }
+          alert("Result is " + JSON.stringify(data)+"!");
+        });
+  }
+  else {
+    alert("Currently, only querying Geostatistical datasets is supported!");
+  }
+
+  });
+
+
+$("#clearResultsButton").click(function(){
+  $("#resultTable").remove();
+});
 /*
 * function that opens the map panel when the button is clicked
  */

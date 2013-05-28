@@ -274,6 +274,29 @@
       <!--*****************************-->
       <div id="BrowsePanel" class="span12" style="display:none;">
         <h1>Browse Meaningful Spatial Statistics</h1>
+        <h3>Query information about datasets</h3>
+        <p>You can directly retrieve information about registered datasets here. If you want to query the metadata as Linked Data, please use the SPARQL endpoint below.</p>
+        <div class="span12">
+          <form class="form-inline" id="browseForm">
+            <!--Statistical Variable Type-->
+           <select id="VarTypeIDSelector">
+                <option value="SPP">Spatial Point Pattern</option>
+                <option value="TPP">Temporal Point Pattern</option>
+                <option value="STPP">Spatiotemporal Point Pattern</option>
+                <option value="MSPP">Marked Spatial Point Pattern</option>
+                <option value="MTPP">Marked Temporal Point Pattern</option>
+                <option value="MSTPP">Marked Spatiotemporal Point Pattern</option>
+                <option value="GEOST">Geostatistical Data</option>
+                <option value="LAT">Lattice Data</option>
+                <option value="TRAJ">Trajectories</option>
+                <option value="MTRAJ">Marked Trajectories</option>
+              </select>
+              <button id="querySubmitButton" type="submit" class="btn btn-primary">Browse Information</button>
+              <button id="clearResultsButton" type="button" class="btn">Clear Results</button>
+          </form>
+         <div class="span12" id="queryResultPanel">
+         </div>
+        </div>
         <h3>SPARQL endpoint</h3>
         <p> The metadata about statistical datasets is stored in the Linked Open Data cloud in the <abbr title="Resource Description Framework">RDF</abbr> format. The databases in the Linked Open Data cloud are called triple stores and the common query language to retrieve the linked data is called SPARQL. You can retrieve information about the statistical datasets by sending a SPARQL query to the following endpoint of our triple store:</p>
         <p><a href="http://giv-mss.uni-muenster.de:8081/sparql">http://giv-mss.uni-muenster.de:8081/sparql</a></p>
@@ -328,10 +351,6 @@
       </div>
 
     </div> <!-- /container -->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
    
 
   </body>
