@@ -17,13 +17,27 @@ $("#entrySubmitButton").click(function(){
   var license = $("#License").val();
   var phenUri = $("#PhenomenonUri").val();
   var wktObsWin = $("#wktObsWin").val();
-  var beginDate = $('#beginpicker').data('datetimepicker').getDate();
-  var endDate = $('#endpicker').data('datetimepicker').getDate();
-  var entry = new Entry(sourceUrl,format,varType,license,phenUri,wktObsWin,beginDate,endDate);
+  var epsgCode = $("#EPSGcode").val();
+  if (epsgCode!=""){
+    wktObsWin = "<![CDATA[<http://www.opengis.net/def/crs/EPSG/0/"+epsgCode+">"+wktObsWin+"]]>"
+  }
+  var beginDate = new Date($('#beginpicker').data('datetimepicker').getDate());
+  var endDate = new Date($('#endpicker').data('datetimepicker').getDate());
+  
+  if (isTemporalString(varType) 
+    &&(
+      (beginDate.getTime()==endDate.getTime())
+      ||endDate<beginDate)){
+    alert("Please specify time period for temporal observed window! Begin date needs to be before end date!");
+    return;
+  }
+
+  var entry = new Entry(sourceUrl,format,varType,license,phenUri,wktObsWin,beginDate.toUTCString(),endDate.toUTCString());
 
   //posting the data to the Webapp that converts the data to RDF and inserts it to the Parliament server
   jQuery.ajax({
-          url: "http://localhost:8080/tsproxy",
+          //url: "http://giv-mss.uni-muenster.de:8080/ts-proxy",
+          url: "http://localhost:8080/ts-proxy",
           type: "POST",
           data: JSON.stringify(entry),
           contentType: "application/json"
@@ -108,7 +122,7 @@ $("#mapPanelBtn").click(function(){
 );
 
 $("#addInfoBtn").click(function(){
-  if (addInfoPanelOpen){
+    if (addInfoPanelOpen){
       $("#addInfoBtn").text("Add additional information");
       addInfoPanelOpen=false;
     }
@@ -118,22 +132,50 @@ $("#addInfoBtn").click(function(){
     else{
       $("#addInfoBtn").text("Close additional information form");
       addInfoPanelOpen=true;
-      if ($("#VarTypeID").val()=="POINT_PATTERN"){
-        $("#obsWinSpContainer").css("display","inline");
-        $("#obsWinTempContainer").css("display","inline");
-      }
-      else {
-        $("#obsWinSpContainer").css("display","none");
-        $("#obsWinTempContainer").css("display","none");
-      }
-    }
-  
+      var patt=/PointPattern/g;
+      var varType = $("#VarTypeID").val();
+      if (patt.test(varType)){
+        var pattSpat1=/SpatialPoint/g;
+        var pattSpat2=/Spatio/g;
+        if (pattSpat1.test(varType)||pattSpat2.test(varType)) {
+          $("#obsWinSpContainer").css("display","inline");
+        }else {
+          $("#obsWinSpContainer").css("display","none");
+        }
+
+        var pattTemp1=/temporal/g;
+        var pattTemp2=/Temporal/g;
+        if (pattTemp1.test(varType)||pattTemp2.test(varType)) {
+          $("#obsWinTempContainer").css("display","inline");
+        } else {
+          $("#obsWinTempContainer").css("display","none");
+          }
+        }
+        else {
+          $("#obsWinSpContainer").css("display","none");
+          $("#obsWinTempContainer").css("display","none");
+        }
+    } 
 });
 
 $("#VarTypeID").change(function(){
-  if (addInfoPanelOpen && $("#VarTypeID").val()=="POINT_PATTERN"){
-    $("#obsWinSpContainer").css("display","inline");
-    $("#obsWinTempContainer").css("display","inline");
+  var patt=/PointPattern/g;
+  var varType = $("#VarTypeID").val();
+  if (addInfoPanelOpen && patt.test(varType)){
+    var pattSpat1=/SpatialPoint/g;
+    var pattSpat2=/Spatio/g;
+    if (pattSpat1.test(varType)||pattSpat2.test(varType)) {
+      $("#obsWinSpContainer").css("display","inline");
+    } else {
+          $("#obsWinSpContainer").css("display","none");
+        }
+    var pattTemp1=/temporal/g;
+    var pattTemp2=/Temporal/g;
+    if (pattTemp1.test(varType)||pattTemp2.test(varType)) {
+      $("#obsWinTempContainer").css("display","inline");
+    }else {
+          $("#obsWinTempContainer").css("display","none");
+          }
   }
   else if (addInfoPanelOpen) {
     $("#obsWinSpContainer").css("display","none");

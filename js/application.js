@@ -1,3 +1,5 @@
+
+
 var panelIDs = ["StartPanel","TheoriesPanel","AddPanel","BrowsePanel","InfoPanel","ContactPanel"];
 
 
@@ -11,8 +13,6 @@ function showAddPanel(){
 	$("#NavAdd").attr("class","active");
 	setPanelActive("AddPanel");
 }
-
-
 
 /**
 *  method for setting the panel on active
@@ -98,6 +98,12 @@ function arrayContains(a, obj) {
         }
     }
     return false;
+}
+
+function isTemporalString(inputString){
+	var pattTemp1=/temporal/g;
+  	var pattTemp2=/Temporal/g;
+  	return (pattTemp1.test(inputString)||pattTemp2.test(inputString));
 }
 
 
