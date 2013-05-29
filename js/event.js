@@ -62,13 +62,31 @@ $("#savePolygonBtn").click(function(){
 });
 
 $("#querySubmitButton").click(function(){
-  var datatype = $("#VarTypeIDSelector").val();
-  if (datatype=="GEOST"){
-        $.getJSON('http://localhost:8080/ts-proxy?datatype='+datatype, function(data) {
-          var entries = data.Entries;
+  var datatype = $("#VarTypeIDSelector").val(), entries, tableHeading;
+  $.getJSON('http://localhost:8080/ts-proxy?datatype='+datatype, function(data) {
+          entries = data.Entries;
+          if (entries.length==0){
+            alert("No entries found!");
+            return;
+          }
           $("#resultTable").remove();
+          if (datatype=="GEOST")tableHeading="Geostatistical Datasets";
+              else if (datatype=="SPP") tableHeading="Spatial Point Pattern Datasets";
+              else if (datatype=="SPP") tableHeading="Temporal Point Pattern Datasets";
+              else if (datatype=="MSPP") tableHeading="Marked Spatial Point Pattern Datasets";
+              else if (datatype=="MTPP") tableHeading="Marked Temporal Point Pattern Datasets";
+              else if (datatype=="MSTPP") tableHeading="Marked Spatiotemporal Point Pattern Datasets";
+              else if (datatype=="STPP") tableHeading="Spatiotemporal Point Pattern Datasets";
+              else if (datatype=="LAT") tableHeading="Lattice Datasets";
+              else if (datatype=="TRAJ") tableHeading="Trajectory Datasets";
+              else if (datatype=="MTRAJ") tableHeading="Marked Trajectory Datasets";
           $("#queryResultPanel").append(
-              $("<table></table>").addClass("table table-hover").attr("id", "resultTable").append(
+            $("<div></div>").attr("id", "resultTable").append(
+              //set title of table for results
+              $("<h4></h4>").text(tableHeading))
+          );
+          $("#resultTable").append(
+              $("<table></table>").addClass("table table-hover").append(
                 $("<thead></thead>").append(
                 $("<tr></tr>")
                   .append($("<td></td>").append($("<strong></strong>").text("Source URL")))
@@ -89,14 +107,9 @@ $("#querySubmitButton").click(function(){
                   .append($("<td></td>").text(entry.format))
                   );
           }
-          alert("Result is " + JSON.stringify(data)+"!");
         });
-  }
-  else {
-    alert("Currently, only querying Geostatistical datasets is supported!");
-  }
-
-  });
+  
+});
 
 
 $("#clearResultsButton").click(function(){
@@ -256,12 +269,96 @@ $("#suInfo").clickover({
 $("#varTypeInfo").clickover({
 	global_close: 'false',
 	placement : 'right',
-	title : 'Specifying the Statistical Variable Type',
-    content: 'Please specify the variable type here. If you are not sure about the variable type, please have a quick look on our about page.',
+	title : 'Statistical Variable Type',
+    content: 'The statistical variable type indicates of which type the dataset is, e.g. whether it is a point pattern or a geostatistical variable. If you are not sure about the variable type, please have a quick look on our idea page. The variable type is mandatory.',
     trigger: 'hover'
 	}
 );
 
+$("#addInfoInfo").clickover({
+  global_close: 'false',
+  placement : 'right',
+  title : 'Additional information',
+    content: 'You can add additional information like license, format or information about the observed or modelled phenomenon here. The additional information is optional.',
+    trigger: 'hover'
+  }
+);
+
+$("#formatInfo").clickover({
+  global_close: 'false',
+  placement : 'bottom',
+  title : 'Format information',
+    content: 'The format in which the data is available, if the source URL is resolved. Currently the format can be specified as free text. However, common formats for spatial information are ESRI SHP file, GML, CSV, ... .',
+    trigger: 'hover'
+  }
+);
+
+
+$("#licenseInfo").clickover({
+  global_close: 'false',
+  placement : 'bottom',
+  title : 'License information',
+    content: 'The license under which the data is available. Currently the license can be specified as free text. However, if possible, please provide a link to the license text.',
+    trigger: 'hover'
+  }
+);
+
+
+$("#phenUriInfo").clickover({
+  global_close: 'false',
+  placement : 'right',
+  title : 'Observed or modelled phenomenon',
+    content: 'Information about the observed or modelled phenomenon. Currently, the information can be specified as free text. However, we recommend to use a URI of a definition in a dictionary or an ontology, e.g. the NASA SWEET ontologies.',
+    trigger: 'hover'
+  });
+
+
+$("#wktInfo").clickover({
+  global_close: 'false',
+  placement : 'right',
+  title : 'Observed Spatial Window - Polygon',
+    content: 'The observed spatial window provides information about the extent which has been observed or modelled for a point pattern variable. Note that this usually differs from the bounding box or convex hull of the points contained in a pattern. The Polygon needs to be provided in the Well-Known-Text (WKT) format.',
+    trigger: 'hover'
+  }
+);
+
+$("#epsgInfo").clickover({
+  global_close: 'false',
+  placement : 'right',
+  title : 'Observed Spatial Window - EPSG code',
+    content: 'The code defined by the European Petroleum Survey Group (EPSG) provides information about the spatial reference system in which the coordinates of the observed spatial window are available.',
+    trigger: 'hover'
+  }
+);
+
+$("#mapDefInfo").clickover({
+  global_close: 'false',
+  placement : 'right',
+  title : 'Map Definition',
+    content: 'In case you do not have information about the spatial window yet, you can also directly define it in a map here.',
+    trigger: 'hover'
+  }
+);
+
+
+$("#beginInfo").clickover({
+  global_close: 'false',
+  placement : 'right',
+  title : 'Observed Temporal Window - Begin',
+    content: 'The observed temporal window specifies the extent which has been observed or modelled for a temporal point pattern variable. Begin needs to be before end date.',
+    trigger: 'hover'
+  }
+);
+
+
+$("#endInfo").clickover({
+  global_close: 'false',
+  placement : 'right',
+  title : 'Observed Temporal Window - End',
+    content: 'The observed temporal window specifies the extent which has been observed or modelled for a temporal point pattern variable. End needs to be after begin date.',
+    trigger: 'hover'
+  }
+);
 
 //end $(document).ready(function(){
 });

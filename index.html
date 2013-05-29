@@ -35,10 +35,6 @@
     <script src="js/application.js"></script>
     <script src="js/model.js"></script>
     <script src="js/event.js"></script>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
 
   </head>
 
@@ -158,7 +154,7 @@
 
            <div class="controls">
               <button id="addInfoBtn" type="button" class="btn" data-toggle="collapse" data-target="#additionalInfoContainer">Add additional information</button>
-              <span class="help-inline" id="mapDefInfo" rel="clickover"><i class="icon-info-sign"></i></span>
+              <span class="help-inline" id="addInfoInfo" rel="clickover"><i class="icon-info-sign"></i></span>
            </div>
 
            <div id="additionalInfoContainer" class="collapse span12 top-buffer">
@@ -275,7 +271,7 @@
       <div id="BrowsePanel" class="span12" style="display:none;">
         <h1>Browse Meaningful Spatial Statistics</h1>
         <h3>Query information about datasets</h3>
-        <p>You can directly retrieve information about registered datasets here. If you want to query the metadata as Linked Data, please use the SPARQL endpoint below.</p>
+        <p>Browse through statistical datasets of a particular statistical variable type here. If you want to directly query the metadata as Linked Data, please use the <a href="#sparqlEndpoint">SPARQL endpoint</a> below.</p>
         <div class="span12">
           <form class="form-inline" id="browseForm">
             <!--Statistical Variable Type-->
@@ -294,15 +290,12 @@
               <button id="querySubmitButton" type="submit" class="btn btn-primary">Browse Information</button>
               <button id="clearResultsButton" type="button" class="btn">Clear Results</button>
           </form>
-         <div class="span12" id="queryResultPanel">
+         <div class="span10" id="queryResultPanel">
          </div>
         </div>
-        <h3>SPARQL endpoint</h3>
+        <h3 id="sparqlEndpoint">SPARQL endpoint</h3>
         <p> The metadata about statistical datasets is stored in the Linked Open Data cloud in the <abbr title="Resource Description Framework">RDF</abbr> format. The databases in the Linked Open Data cloud are called triple stores and the common query language to retrieve the linked data is called SPARQL. You can retrieve information about the statistical datasets by sending a SPARQL query to the following endpoint of our triple store:</p>
-        <p><a href="http://giv-mss.uni-muenster.de:8081/sparql">http://giv-mss.uni-muenster.de:8081/sparql</a></p>
-        <h3>SPARQL query form</h3>
-        <p>You can also use this form to issue your SPARQL queries:</p>
-        <p><a href="http://giv-mss.uni-muenster.de:8081/parliament/query.jsp">http://giv-mss.uni-muenster.de:8081/parliament/query.jsp</a></p>
+        <p><a href="http://giv-mss.uni-muenster.de:8081/parliament/sparql">http://giv-mss.uni-muenster.de:8081/parliament/sparql</a></p>
         <h3>SPARQL package for R</h3>
         <p>There is also the <a href="http://cran.r-project.org/web/packages/SPARQL/">R SPARQL package</a> available allowing to directly issue SPARQL requests to a triple store from R and retrieving the results in R.</p>
         <hr> 
