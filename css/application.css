@@ -6,4 +6,6 @@ border-color:#C0C0C0;
 border-radius: 6px;
 }
 
-.top-buffer { margin-top:20px; }
+.top-buffer { margin-top:50px; }
+
+.bottom-buffer { padding-bottom:50px; }

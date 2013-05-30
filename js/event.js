@@ -37,7 +37,7 @@ $("#entrySubmitButton").click(function(){
   //posting the data to the Webapp that converts the data to RDF and inserts it to the Parliament server
   jQuery.ajax({
           //url: "http://giv-mss.uni-muenster.de:8080/ts-proxy",
-          url: "http://localhost:8080/ts-proxy",
+          url: "http://giv-mss.uni-muenster.de:8080/ts-proxy",
           type: "POST",
           data: JSON.stringify(entry),
           contentType: "application/json"
@@ -63,7 +63,7 @@ $("#savePolygonBtn").click(function(){
 
 $("#querySubmitButton").click(function(){
   var datatype = $("#VarTypeIDSelector").val(), entries, tableHeading;
-  $.getJSON('http://localhost:8080/ts-proxy?datatype='+datatype, function(data) {
+  $.getJSON('http://giv-mss.uni-muenster.de:8080/ts-proxy?datatype='+datatype, function(data) {
           entries = data.Entries;
           if (entries.length==0){
             alert("No entries found!");
@@ -86,18 +86,23 @@ $("#querySubmitButton").click(function(){
               $("<h4></h4>").text(tableHeading))
           );
           $("#resultTable").append(
-              $("<table></table>").addClass("table table-hover").append(
-                $("<thead></thead>").append(
-                $("<tr></tr>")
-                  .append($("<td></td>").append($("<strong></strong>").text("Source URL")))
-                  .append($("<td></td>").append($("<strong></strong>").text("Phenomenon")))
-                  .append($("<td></td>").append($("<strong></strong>").text("License")))
-                  .append($("<td></td>").append($("<strong></strong>").text("Format")))
+              $("<table></table>")
+                .addClass("table table-hover")
+                .append(
+                    $("<thead></thead>")
+                    .append(
+                        $("<tr></tr>")
+                          .append($("<td></td>").append($("<strong></strong>").text("Source URL")))
+                          .append($("<td></td>").append($("<strong></strong>").text("Phenomenon")))
+                          .append($("<td></td>").append($("<strong></strong>").text("License")))
+                          .append($("<td></td>").append($("<strong></strong>").text("Format")))
+                    ) 
+                  )
+                .append(
+                  $("<tbody></tbody>")
+                  .attr("id","resultTableBody")
                 )
-              ));
-          $("#resultTable").append(
-            $("<tbody></tbody>").attr("id","resultTableBody")
-            );
+          );
           for (i=0;i<entries.length;i++){
             var entry = entries[i];
             $("#resultTableBody").append($("<tr></tr>")
@@ -308,7 +313,7 @@ $("#phenUriInfo").clickover({
   global_close: 'false',
   placement : 'right',
   title : 'Observed or modelled phenomenon',
-    content: 'Information about the observed or modelled phenomenon. Currently, the information can be specified as free text. However, we recommend to use a URI of a definition in a dictionary or an ontology, e.g. the NASA SWEET ontologies.',
+    content: 'We recommend to point to a definition in a dictionary or an ontology, e.g. the NASA SWEET ontologies.',
     trigger: 'hover'
   });
 

@@ -28,7 +28,7 @@
     <!--lib for drawing polygons-->
     <script src="lib/leaflet.draw.js"></script>
      <!--leaflet to WKT script-->
-     <script src="https://gist.github.com/bmcbride/4248238/raw/cf258882c175bbdc74be0281703278f48a04405d/LeafletToWKT.js"></script>
+     <script src="lib/LeafletToWKT.js"></script>
     
 
     <!-- MSS scripts-->
@@ -53,7 +53,7 @@
                 <li id="NavAdd"><a href="#" onClick="showAddPanel()">Add Dataset</a></li>
                 <li id="NavBrowse"><a href="#" onClick="showBrowsePanel()">Browse Datasets</a></li>
                 <li id="NavTheories"><a href="#" onClick="showTheoriesPanel()">Theories and Tools</a></li>
-                <li id="NavContact"><a href="#" onClick="showContactPanel()">Contact</a></li>
+                <li id="NavContact"><a href="#" onClick="showContactPanel()">Team &amp; Contact</a></li>
               </ul>
             </div>
           </div>
@@ -94,13 +94,18 @@
       <!-- Info Panel -->
       <!--*****************************-->
       <div id="InfoPanel" class="span12" style="display:none;">
-        <div id="MssPanel">
-          <h2>Idea</h2>
-          <p>
+        <p>
             The basis of the content provided on this site was formed by a paper, <a href="http://ifgi.uni-muenster.de/~epebe_01/mip.pdf">Meaningful Spatial Prediction and Aggregation</a>, which is currently under review.
           </p>
+        <div id="MssPanel">
+          <h2>Idea</h2>
           <p>  
-            With more and more datasets available in the Web that are accessible to a broad range of heterogeneous users the risk of applying inappropriate analysis increases. For example, the Carbon Dioxid (<abbr title="Carbon Dioxide">CO2</abbr>) emissions of coal power plants may be interpolated to  arbitrary locations in space by unexperienced users. But how can one interpret the <abbr title="Carbon Dioxide">CO2</abbr> emissions at an arbitrary location in space where no power plant is located? We argue that it is only meaningful to predict (or interpolate) values for observable phenomena. This means, in the example of <abbr title="Carbon Dioxide">CO2</abbr> emissions per power plant, that we cannot observe the <abbr title="Carbon Dioxide">CO2</abbr> emissions everywhere, but only at locations of power plants. Our aim is to formalise this to make it machine readable and provide basic recommendation for appropriate, or warnings for inappropriate, analysis in statistical software.</p>
+            With more and more datasets available in the Web that are accessible to a broad range of heterogeneous users the risk of applying inappropriate analysis increases. For example, the Carbon Dioxid (<abbr title="Carbon Dioxide">CO2</abbr>) emissions of coal power plants may be interpolated to  arbitrary locations in space by unexperienced users. But how can one interpret the <abbr title="Carbon Dioxide">CO2</abbr> emissions at an arbitrary location in space where no power plant is located?</p>
+          <div class="pagination-centered">
+          <img src="img/intro.png" class="img-rounded"/>
+        </div>
+          <p>
+           We argue that it is only meaningful to predict (or interpolate) values for observable phenomena. This means, in the example of <abbr title="Carbon Dioxide">CO2</abbr> emissions per power plant, that we cannot observe the <abbr title="Carbon Dioxide">CO2</abbr> emissions everywhere, but only at locations of power plants. Our aim is to formalise this to make it machine readable and provide basic recommendation for appropriate, or warnings for inappropriate, analysis in statistical software.</p>
           <h2>Approach</h2>
           <p>
             For meaningful spatial statistics, we combine approaches from knowledge engineering that allow to formalize semantics with statistical analysis in order to provide support for a meaningful analysis using appropriate statistical procedures for a particular dataset.
@@ -118,7 +123,6 @@
       <!-- Add Panel -->
       <!--*****************************-->
       <div id="AddPanel" class="span12" style="display:none;">
-        <h1>Add Your Datasets</h1>
         <p>If you want to make your datasets available online and want to provide some useful information on meaningful analysis, you can upload this information here.</p>
         <hr class="span12">
         <form class="form-horizontal" id="entryForm">
@@ -157,10 +161,10 @@
               <span class="help-inline" id="addInfoInfo" rel="clickover"><i class="icon-info-sign"></i></span>
            </div>
 
-           <div id="additionalInfoContainer" class="collapse span12 top-buffer">
+           <div id="additionalInfoContainer" class="collapse span12">
 
            <!--File Format-->
-           <div class="control-group">
+           <div class="control-group top-buffer">
             <label class="control-label" for="Format">Format</label>
             <div class="controls">
               <input class="input-xlarge" type="text" id="Format" value="Comma-seperated Values (CSV)">
@@ -178,7 +182,7 @@
            </div>
 
            <!--Phenomenon -->
-           <div class="control-group">
+           <div class="control-group bottom-buffer">
             <label class="control-label" for="PhenomenonUri">Phenomenon URI</label>
             <div class="controls">
               <input class="input-xlarge" type="text" id="PhenomenonUri" value="http://sweet.jpl.nasa.gov/2.2/matrAerosol.owl#PM10">
@@ -269,7 +273,6 @@
       <!-- Browse Panel -->
       <!--*****************************-->
       <div id="BrowsePanel" class="span12" style="display:none;">
-        <h1>Browse Meaningful Spatial Statistics</h1>
         <h3>Query information about datasets</h3>
         <p>Browse through statistical datasets of a particular statistical variable type here. If you want to directly query the metadata as Linked Data, please use the <a href="#sparqlEndpoint">SPARQL endpoint</a> below.</p>
         <div class="span12">
@@ -290,15 +293,19 @@
               <button id="querySubmitButton" type="submit" class="btn btn-primary">Browse Information</button>
               <button id="clearResultsButton" type="button" class="btn">Clear Results</button>
           </form>
-         <div class="span10" id="queryResultPanel">
+         <div class="span10 bottom-buffer" id="queryResultPanel">
          </div>
         </div>
+        <div class="top-buffer">
         <h3 id="sparqlEndpoint">SPARQL endpoint</h3>
         <p> The metadata about statistical datasets is stored in the Linked Open Data cloud in the <abbr title="Resource Description Framework">RDF</abbr> format. The databases in the Linked Open Data cloud are called triple stores and the common query language to retrieve the linked data is called SPARQL. You can retrieve information about the statistical datasets by sending a SPARQL query to the following endpoint of our triple store:</p>
         <p><a href="http://giv-mss.uni-muenster.de:8081/parliament/sparql">http://giv-mss.uni-muenster.de:8081/parliament/sparql</a></p>
+        </div>
+        <div class="top-buffer">
         <h3>SPARQL package for R</h3>
         <p>There is also the <a href="http://cran.r-project.org/web/packages/SPARQL/">R SPARQL package</a> available allowing to directly issue SPARQL requests to a triple store from R and retrieving the results in R.</p>
-        <hr> 
+        <hr>
+        </div> 
       </div>
 
       <!--*****************************-->
@@ -330,7 +337,10 @@
      <!-- About Panel -->
      <!--*****************************-->
       <div id="ContactPanel" class="span12" style="display:none;">
-        <h1>Contact</h1>
+        <h3>Team</h3>
+
+        <h3>Contact</h3>
+        <p>mss at uni-muenster.de</p>
         <p>This portal allows you to annotate datasets for spatial statistical analysis in order to provide additional information whether the dataset is a point pattern, geostatistical data, lattice data, or trajectory data. Depending on the type of data, statistical procedures such as spatial interpolation are <i>meaningful</i> or not. To find out more about the different data types and meaninfgul statistical analysis, click below.</p>
         <a class="btn btn-large btn-success" href="#">More information here!</a>
         <hr>
