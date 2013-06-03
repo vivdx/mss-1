@@ -73,18 +73,19 @@
         <div class="row-fluid">
           <div class="span4">
             <h2>Add Datasets</h2>
-            <p>You want to publish your datasets for spatial statistical analyis in the Web and ensure that the data is analysed using appropriate methods? Then add your dataset to this portal and annotate it with additional information. <br/>
+            <p>You can publish your datasets with relevant metadata for a meaningful analysis here. All you need is an URL pointing to your dataset. You can then specify the type of statistical variable. You can also provide additional information such as license, data format, or the observed or modeled phenomenon. <br/>
             <button class="btn" onclick="showAddPanel()">View details &raquo;</a></p>
           </div>
           <div class="span4">
             <h2>Browse Datasets</h2>
-            <p>You are searching for a particular point pattern in a certain area? Then browse through our datasets!</p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
+            <p>In case you are searching for datasets for your analysis, you can use this portal to browse through registered datasets for a specific variable type, e.g. point patterns.</p>
+            <p><a class="btn" onclick="showBrowsePanel()">View details &raquo;</a></p>
          </div>
           <div class="span4">
-            <h2>Learn More about Semantics</h2>
-            <p>The portal utilizes common Semantic Web technologies. It stores the annotations as linked data in the RDF format. The semantics of the concepts are defined in the OWL ontology. If you are not familiar with these technologies, we provide an overview for you.</p>
-            <p><a class="btn" href="#">View details &raquo;</a></p>
+            <h2>Semantic Web?</h2>
+            <p>The portal utilizes common Semantic Web technologies. It stores the annotations as linked data in the RDF format. The semantics of the concepts are defined in the OWL ontology. If you are not familiar with these technologies, the links below point to tutorials for beginners.</p>
+            <p><a class="btn" href="http://www.cambridgesemantics.com/semantic-university/introduction-to-the-semantic-web">Learn more about Semantic Web</a></p>
+            <p><a class="btn" href="http://www.cambridgesemantics.com/de/semantic-university/introduction-to-linked-data">Learn more about Linked Data</a></p>
           </div>
         </div>
         <hr>
@@ -98,6 +99,7 @@
             The basis of the content provided on this site was formed by a paper, <a href="http://ifgi.uni-muenster.de/~epebe_01/mip.pdf">Meaningful Spatial Prediction and Aggregation</a>, which is currently under review.
           </p>
         <div id="MssPanel">
+          <div>
           <h2>Idea</h2>
           <p>  
             With more and more datasets available in the Web that are accessible to a broad range of heterogeneous users the risk of applying inappropriate analysis increases. For example, the Carbon Dioxid (<abbr title="Carbon Dioxide">CO2</abbr>) emissions of coal power plants may be interpolated to  arbitrary locations in space by unexperienced users. But how can one interpret the <abbr title="Carbon Dioxide">CO2</abbr> emissions at an arbitrary location in space where no power plant is located?</p>
@@ -105,17 +107,90 @@
           <img src="img/intro.png" class="img-rounded"/>
         </div>
           <p>
-           We argue that it is only meaningful to predict (or interpolate) values for observable phenomena. This means, in the example of <abbr title="Carbon Dioxide">CO2</abbr> emissions per power plant, that we cannot observe the <abbr title="Carbon Dioxide">CO2</abbr> emissions everywhere, but only at locations of power plants. Our aim is to formalise this to make it machine readable and provide basic recommendation for appropriate, or warnings for inappropriate, analysis in statistical software.</p>
+           We argue that it is only meaningful to predict (or interpolate) values for observable phenomena. This means, in the example of <abbr title="Carbon Dioxide">CO2</abbr> emissions per power plant, that we cannot observe the <abbr title="Carbon Dioxide">CO2</abbr> emissions everywhere, but only at locations of power plants. Our aim is to formalise this to make it machine readable and provide basic recommendation for appropriate, or warnings for inappropriate, analysis in statistical software.
+         </p>
+       </div>
+       <div>
           <h2>Approach</h2>
           <p>
             For meaningful spatial statistics, we combine approaches from knowledge engineering that allow to formalize semantics with statistical analysis in order to provide support for a meaningful analysis using appropriate statistical procedures for a particular dataset.
           </p>
           <p>
-            In spatial statistics we distinguish different data types, such as point patterns, geostatistical data, lattice data and trajectories, and develop different methods to answer particular questions for specific types of data. The information systems we use to manage and exchange data typically do not make the same distinction. It then becomes very easy to carry out analyses that are syntactically correct but semantically not meaningful, and we will present a number of such cases.
+            In spatial statistics we distinguish different data types:
+          </p>
+                
+            <table id="VarTypesTable" class="table table-hover">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Description</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Spatial Point Pattern</strong></td>
+                  <td>Mapping from discrete entities (objects or events) to spatial locations.</td>
+                  <td>Location of epicentres of earthquakes</td>
+                </tr>
+                <tr>
+                  <td><strong>Temporal Point Pattern</strong></td>
+                  <td>Mapping from discrete entities (objects or events) to temporal locations.</td>
+                  <td>Dates of major floods in a city.</td>
+                </tr>
+                <tr>
+                  <td><strong>Spatio-temporal Point Pattern</strong></td>
+                  <td>Mapping from discrete entities (objects or events) to spatio-temporal locations.</td>
+                  <td>Location of epicentres of earthquakes and time of earthquakes.</td>
+                </tr>
+                <tr>
+                  <td><strong>Marked * Point Pattern</strong></td>
+                  <td>Mapping from discrete entities (objects or events) to spatial and/or temporal locations and quality values.</td>
+                  <td>Location of epicentres of earthquakes and time of earthquakes with magnitudes.</td>
+                </tr>
+                <tr>
+                  <td><strong>Geostatistical Variable</strong></td>
+                  <td>Mapping from spatial and/or temporal locations to quality values.</td>
+                  <td>Landsurface temperature at locations in space and time.</td>
+                </tr>
+                <tr>
+                  <td><strong>Lattice Variable</strong></td>
+                  <td>Mapping from spatial and/or temporal regions to quality values.</td>
+                  <td>Number of doctor-prescriptions per consultation in cantons of the Midi-Pyrenees.</td>
+                </tr>
+                <tr>
+                  <td><strong>Trajectory</strong></td>
+                  <td>Mapping from discrete objects and time to spatial locations.</td>
+                  <td>Tracks of animals.</td>
+                </tr>
+              </tbody>
+            </table>
+          <p>
+            The information systems we use to manage and exchange data typically do not make the same distinction. It then becomes very easy to carry out analyses that are syntactically correct but semantically not meaningful, and we will present a number of such cases.
           </p>
           <p>
             We formalized the notion of meaningfulness in the context of spatio-temporal prediction and spatio-temporal aggregation. Meaningful prediction implies correspondence between the prediction function and the observation function: each prediction should predict an observable quantity. Meaningful aggregation requires correspondence of the observation window, the region or set of points over which data are exhaustive, and the aggregation target (region or set of points). Our theory has been formalized in a higher order logic language (Isabelle), and an <abbr title="Web Ontology Language">OWL</abbr> pattern is provided for semantic annotation of data sets that could be used to prohibit meaningless spatial statistical operations on these data. Concrete use cases and workflows for the latter will be presented on this website.
           </p>
+        </div>
+        <div>
+          <h2>Implementation</h2>
+          <p>
+            An overview on the current prototypical implementation is given in the figure below. </p>
+            <div class="pagination-centered">
+            <img src="img/annotation_portal.png" class="img-rounded" width="700" height="550"/>
+            </div>
+            <p>There are three main components in the implementation:
+            <ul>
+              <li>This <strong>Web Portal</strong> allows to add new annotations to datasets or browse through existing annotations.</li>
+              <li>The annotations are made available in the <abbr title="Linked Open Data">LOD</abbr> cloud using the <strong><a href="http://parliament.semwebcentral.org/">Parliament triple store</a></strong>, an open source implementation that allows to insert and query Linked Data in the <abbr title="Resource Description Framework">RDF</abbr> format.</li>
+              <li>There is also an <strong><a href="https://svn.52north.org/svn/geostatistics/main/meaningful/tools/R/mss_sparql.r">R script</a></strong> available to retrieve the annotations from the Parliament server. Afterwards, an analysis based on our <a href="https://svn.52north.org/svn/geostatistics/main/meaningful/tools/R/implementation.R">R script for meaningful prediction and aggregation</a> can be performed printing warnings when non-meaningful aggregation or prediction is implemented. The script defines subclasses of the classes for spatial datasets defined in the <a href="">sp package</a> and added meaningfulness checks based on simple type checks.</li>
+              <li>The annotations are available in the Linked Data Cloud using concepts of our formalism implemented in an <a href="http://giv-mss.uni-muenster.de/theories/MeaningfulSpatialStatistics"><abbr title="Web Ontology Language">OWL</abbr></a>.</li>
+            </ul>
+          </p>
+          <p>
+
+          </p>
+        </div>
         </div>
         <hr>
       </div>
@@ -338,11 +413,19 @@
      <!--*****************************-->
       <div id="ContactPanel" class="span12" style="display:none;">
         <h3>Team</h3>
+        <p>This project is joint work between the <a href="http://stml.uni-muenster.de/">Spatio-Temporal Modelling Lab (STML)</a> and the <a href ="http://musil.uni-muenster.de/">Muenster Semantic Interoperability Lab  (MUSIL)</a> at the <a href="http://ifgi.uni-muenster.de">Institute for Geoinformatics</a> of the <a href="http://www.wwu.de">University of Muenster</a>, Germany.</p>
+        <p>
+          Members of the Team are:
+          <ul>
+            <li><a href="http://ifgi.uni-muenster.de/~staschc/">Christoph Stasch</a></li>
+            <li><a href="http://ifgi.uni-muenster.de/staff/simon-scheider">Simon Scheider</a></li>
+            <li><a href="http://ifgi.uni-muenster.de/staff/edzer-pebesma">Edzer Pebesma</a></li>
+            <li><a href="http://ifgi.uni-muenster.de/staff/werner-kuhn">Werner Kuhn</a></li>
+          </ul>
+        </p>
 
         <h3>Contact</h3>
-        <p>mss at uni-muenster.de</p>
-        <p>This portal allows you to annotate datasets for spatial statistical analysis in order to provide additional information whether the dataset is a point pattern, geostatistical data, lattice data, or trajectory data. Depending on the type of data, statistical procedures such as spatial interpolation are <i>meaningful</i> or not. To find out more about the different data types and meaninfgul statistical analysis, click below.</p>
-        <a class="btn btn-large btn-success" href="#">More information here!</a>
+        If you are interested in further information, do not hesitate to contact us via <strong>mss at uni-muenster.de</strong>.
         <hr>
       </div>
 
