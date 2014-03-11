@@ -262,6 +262,70 @@ CLICKOVERS
 ****************************
 */
 
+$("#suTitle").clickover({
+	global_close: 'false',
+	placement : 'right',
+	title : 'Title URL',
+    content: 'A short description of the dataset',
+    trigger: 'hover'
+	}
+);
+$("#suProject").clickover({
+	global_close: 'false',
+	placement : 'right',
+	title : 'Project URL',
+    content: 'If data are related to a project.',
+    trigger: 'hover'
+	}
+);
+$("#suInstitution").clickover({
+	global_close: 'false',
+	placement : 'right',
+	title : 'Institution URL',
+    content: 'Participating Institutes in the Project',
+    trigger: 'hover'
+	}
+);
+$("#suAuthor").clickover({
+	global_close: 'false',
+	placement : 'right',
+	title : 'Author(s) URL',
+    content: 'Name of Principle investigator or Project head.',
+    trigger: 'hover'
+	}
+);
+$("#suDescription").clickover({
+	global_close: 'false',
+	placement : 'right',
+	title : 'Description URL',
+    content: 'If data are supplementary to a publication, the (preliminary) abstract must be added',
+    trigger: 'hover'
+	}
+);
+$("#suKeywords").clickover({
+	global_close: 'false',
+	placement : 'right',
+	title : 'Keywords URL',
+    content: 'A comma separated list of key words and phrases.',
+    trigger: 'hover'
+	}
+);
+$("#suData").clickover({
+	global_close: 'false',
+	placement : 'right',
+	title : 'Data Type URL',
+    content: 'The data type appropriate for this dataset.',
+    trigger: 'hover'
+	}
+);
+$("#suCitation").clickover({
+	global_close: 'false',
+	placement : 'right',
+	title : 'Citation URL',
+    content: 'Reference to a book, paper, or author',
+    trigger: 'hover'
+	}
+);
 $("#suInfo").clickover({
 	global_close: 'false',
 	placement : 'right',
@@ -270,7 +334,6 @@ $("#suInfo").clickover({
     trigger: 'hover'
 	}
 );
-
 $("#varTypeInfo").clickover({
 	global_close: 'false',
 	placement : 'right',
