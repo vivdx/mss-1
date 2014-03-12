@@ -6,7 +6,7 @@ $(document).ready(function(){
   var mapAdd,mapBrowse,drawnItems;
   var mapPanelOpen = false;
   var addInfoPanelOpen = false;
-
+  var addDesPanelOpen = false;
 /*
 Function that is invoked, when submit button in add dataset panel is clicked; 
  */
@@ -179,7 +179,42 @@ $("#mapPanelBtn").click(function(){
     }
 	}
 );
+$("#addDesBtn").click(function(){
+    if (addDesPanelOpen){
+      $("#addDesBtn").text("Add Description");
+      addDesPanelOpen=false;
+    }
+    /*
+    If map panel is closed and button is clicked, change button text to close map panel
+     */
+    else{
+      $("#addDesBtn").text("Close Description form");
+      addDesPanelOpen=true;
+      var patt=/PointPattern/g;
+      var varType = $("#VarTypeID").val();
+      if (patt.test(varType)){
+        var pattSpat1=/SpatialPoint/g;
+        var pattSpat2=/Spatio/g;
+        if (pattSpat1.test(varType)||pattSpat2.test(varType)) {
+          $("#obsWinSpContainer").css("display","inline");
+        }else {
+          $("#obsWinSpContainer").css("display","none");
+        }
 
+        var pattTemp1=/temporal/g;
+        var pattTemp2=/Temporal/g;
+        if (pattTemp1.test(varType)||pattTemp2.test(varType)) {
+          $("#obsWinTempContainer").css("display","inline");
+        } else {
+          $("#obsWinTempContainer").css("display","none");
+          }
+        }
+        else {
+          $("#obsWinSpContainer").css("display","none");
+          $("#obsWinTempContainer").css("display","none");
+        }
+    } 
+});
 $("#addInfoBtn").click(function(){
     if (addInfoPanelOpen){
       $("#addInfoBtn").text("Add additional information");
@@ -216,7 +251,6 @@ $("#addInfoBtn").click(function(){
         }
     } 
 });
-
 $("#VarTypeID").change(function(){
   var patt=/PointPattern/g;
   var varType = $("#VarTypeID").val();
@@ -241,7 +275,30 @@ $("#VarTypeID").change(function(){
     $("#obsWinTempContainer").css("display","none");
   }
 });
-
+$("#VarTypeID").change(function(){
+  var patt=/PointPattern/g;
+  var varType = $("#VarTypeID").val();
+  if (addDesPanelOpen && patt.test(varType)){
+    var pattSpat1=/SpatialPoint/g;
+    var pattSpat2=/Spatio/g;
+    if (pattSpat1.test(varType)||pattSpat2.test(varType)) {
+      $("#obsWinSpContainer").css("display","inline");
+    } else {
+          $("#obsWinSpContainer").css("display","none");
+        }
+    var pattTemp1=/temporal/g;
+    var pattTemp2=/Temporal/g;
+    if (pattTemp1.test(varType)||pattTemp2.test(varType)) {
+      $("#obsWinTempContainer").css("display","inline");
+    }else {
+          $("#obsWinTempContainer").css("display","none");
+          }
+  }
+  else if (addDesPanelOpen) {
+    $("#obsWinSpContainer").css("display","none");
+    $("#obsWinTempContainer").css("display","none");
+  }
+});
 
 
 $(function() {

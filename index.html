@@ -202,6 +202,23 @@
         <hr class="span12">
         <form class="form-horizontal" id="entryForm">
 		
+		 <!--Datasource URL-->
+           <div class="control-group">
+            <label class="control-label" for="SourceURL">Datasource <abbr title="Unified Resource Locator">URL</abbr></label>
+            <div class="controls">
+              <input class="input-xxlarge" type="text" id="SourceURL" value="http://giv-mss.uni-muenster.de/data/EU_meas_2005_june.csv">
+              <span class="help-inline" id="suInfo" rel="clickover"><i class="icon-info-sign"></i></a></span>
+            </div>
+           </div>
+		
+		<div class="controls">
+              <button id="addDesBtn" type="button" class="btn" data-toggle="collapse" data-target="#DescriptionInfoContainer">Add Description</button>
+              <span class="help-inline" id="addDesInfo" rel="clickover"><i class="icon-info-sign"></i></span>
+        </div>
+
+        <div id="DescriptionInfoContainer" class="collapse span12">
+		   <br>
+		   <br>
 		  <!--Title-->
            <div class="control-group">
             <label class="control-label" for="SourceURL">Title <abbr title="Unified Resource Locator">URL</abbr></label>
@@ -246,6 +263,7 @@
               <span class="help-inline" id="suDescription" rel="clickover"><i class="icon-info-sign"></i></a></span>
             </div>
            </div>
+		   
 		   <!--Keywords-->
            <div class="control-group">
             <label class="control-label" for="SourceURL">Keywords <abbr title="Unified Resource Locator">URL</abbr></label>
@@ -254,6 +272,7 @@
               <span class="help-inline" id="suKeywords" rel="clickover"><i class="icon-info-sign"></i></a></span>
             </div>
            </div>
+		   
 		   <!--Data Type(FORMAT)-->
            <div class="control-group">
             <label class="control-label" for="SourceURL">Data Type (FORMAT) <abbr title="Unified Resource Locator">URL</abbr></label>
@@ -262,6 +281,7 @@
               <span class="help-inline" id="suData" rel="clickover"><i class="icon-info-sign"></i></a></span>
             </div>
            </div>
+		   
 		   <!--Citation URL-->
            <div class="control-group">
             <label class="control-label" for="SourceURL">Citation <abbr title="Unified Resource Locator">URL</abbr></label>
@@ -271,17 +291,10 @@
             </div>
            </div>
 		  
-		     
-		   
-          <!--Datasource URL-->
-           <div class="control-group">
-            <label class="control-label" for="SourceURL">Datasource <abbr title="Unified Resource Locator">URL</abbr></label>
-            <div class="controls">
-              <input class="input-xxlarge" type="text" id="SourceURL" value="http://giv-mss.uni-muenster.de/data/EU_meas_2005_june.csv">
-              <span class="help-inline" id="suInfo" rel="clickover"><i class="icon-info-sign"></i></a></span>
-            </div>
-           </div>
-
+		</div>     
+         
+		 <br>
+		 <br>
            <!--Statistical Variable Type-->
            <div class="control-group">
             <label class="control-label" for="VarTypeID">Statistical Data Type</label>
