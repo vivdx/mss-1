@@ -367,14 +367,6 @@ $("#suKeywords").clickover({
     trigger: 'hover'
 	}
 );
-$("#suData").clickover({
-	global_close: 'false',
-	placement : 'right',
-	title : 'Data Type URL',
-    content: 'The data type appropriate for this dataset.',
-    trigger: 'hover'
-	}
-);
 $("#suCitation").clickover({
 	global_close: 'false',
 	placement : 'right',

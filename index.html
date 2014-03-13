@@ -221,7 +221,7 @@
 		   <br>
 		  <!--Title-->
            <div class="control-group">
-            <label class="control-label" for="SourceURL">Title <abbr title="Unified Resource Locator">URL</abbr></label>
+            <label class="control-label" for="SourceURL">Title </abbr></label>
             <div class="controls">
               <input class="input-xxlarge" type="text" id="SourceURL" value="">
               <span class="help-inline" id="suTitle" rel="clickover"><i class="icon-info-sign"></i></a></span>
@@ -248,7 +248,7 @@
 		   
 		   <!--Author(s)-->
            <div class="control-group">
-            <label class="control-label" for="SourceURL">Author(s) <abbr title="Unified Resource Locator">URL</abbr></label>
+            <label class="control-label" for="SourceURL">Author(s)</label>
             <div class="controls">
               <input class="input-xxlarge" type="text" id="SourceURL" value="">
               <span class="help-inline" id="suAuthor" rel="clickover"><i class="icon-info-sign"></i></a></span>
@@ -257,7 +257,7 @@
 		   
 		   <!--Description (ABSTRACT)-->
            <div class="control-group">
-            <label class="control-label" for="SourceURL">Description (ABSTRACT) <abbr title="Unified Resource Locator">URL</abbr></label>
+            <label class="control-label" for="SourceURL">Description (ABSTRACT)</label>
             <div class="controls">
               <input class="input-xxlarge" type="text" id="SourceURL" value="">
               <span class="help-inline" id="suDescription" rel="clickover"><i class="icon-info-sign"></i></a></span>
@@ -266,31 +266,23 @@
 		   
 		   <!--Keywords-->
            <div class="control-group">
-            <label class="control-label" for="SourceURL">Keywords <abbr title="Unified Resource Locator">URL</abbr></label>
+            <label class="control-label" for="SourceURL">Keywords</label>
             <div class="controls">
               <input class="input-xxlarge" type="text" id="SourceURL" value="">
               <span class="help-inline" id="suKeywords" rel="clickover"><i class="icon-info-sign"></i></a></span>
             </div>
            </div>
 		   
-		   <!--Data Type(FORMAT)-->
-           <div class="control-group">
-            <label class="control-label" for="SourceURL">Data Type (FORMAT) <abbr title="Unified Resource Locator">URL</abbr></label>
-            <div class="controls">
-              <input class="input-xxlarge" type="text" id="SourceURL" value="">
-              <span class="help-inline" id="suData" rel="clickover"><i class="icon-info-sign"></i></a></span>
-            </div>
-           </div>
-		   
+		 	   
 		   <!--Citation URL-->
            <div class="control-group">
-            <label class="control-label" for="SourceURL">Citation <abbr title="Unified Resource Locator">URL</abbr></label>
+            <label class="control-label" for="SourceURL">Citation</abbr></label>
             <div class="controls">
               <input class="input-xxlarge" type="text" id="SourceURL" value="">
               <span class="help-inline" id="suCitation" rel="clickover"><i class="icon-info-sign"></i></a></span>
             </div>
-           </div> 
-		    
+           </div> 	
+			
            <!--Statistical Variable Type-->
            <div class="control-group">
             <label class="control-label" for="VarTypeID">Statistical Data Type</label>
@@ -302,7 +294,7 @@
                 <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedSpatialPointPattern">Marked Spatial Point Pattern</option>
                 <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedTemporalPointPattern">Marked Temporal Point Pattern</option>
                 <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedSpatioTemporalPointPattern">Marked Spatiotemporal Point Pattern</option>
-                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#GeostatisticalVariable">Geostatistical Data</option>
+                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#GeostatisticalVariable">Field Data</option>
                 <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#LatticeVariable">Lattice Data</option>
                 <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#Trajectory">Trajectories</option>
                 <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedTrajectory">Marked Trajectories</option>
@@ -317,8 +309,8 @@
            </div>
 
            <div id="additionalInfoContainer" class="collapse span12">
-
-           <!--File Format-->
+         	
+		   <!--File Format-->
            <div class="control-group top-buffer">
             <label class="control-label" for="Format">Format</label>
             <div class="controls">
@@ -326,7 +318,25 @@
               <span id="formatInfo" class="help-inline" rel="clickover"><i class="icon-info-sign"></i></span>
             </div>
            </div>
+		   
+		   <!--Variables/Parameters-->
+           <div class="control-group">
+            <label class="control-label" for="Format">Variable</label>
+            <div class="controls">
+              <input class="input-xlarge" type="text" id="Variable" value="CO2, NOx, etc.">
+              <span id="formatInfo" class="help-inline" rel="clickover"><i class="icon-info-sign"></i></span>
+            </div>
+           </div>
 
+		   <!--Unit-->
+           <div class="control-group">
+            <label class="control-label" for="Format">Unit</label>
+            <div class="controls">
+              <input class="input-xlarge" type="text" id="Unit" value="ppm">
+              <span id="formatInfo" class="help-inline" rel="clickover"><i class="icon-info-sign"></i></span>
+            </div>
+           </div>
+		   		
            <!--License-->
            <div class="control-group">
             <label class="control-label" for="License">License</label>
