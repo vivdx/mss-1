@@ -11,13 +11,27 @@ $(document).ready(function(){
 Function that is invoked, when submit button in add dataset panel is clicked; 
  */
 $("#entrySubmitButton").click(function(){
-	var sourceUrl = $("#SourceURL").val();
-  var format = $("#Format").val();
+  var sourceUrl = $("#SourceURL").val();
+  var IdTitle = $("#idTitle").val();
+  var IdProject = $("#idProject").val();
+  var IdInstitute = $("#idInstitute").val();
+  var IdAuthor = $("#idAuthor").val();
+  var IdAbstract = $("#idAbstract").val();
+  var IdKeyword = $("#idKeyword").val();
+  var IdCitation = $("#idCitation").val();
   var varType = $("#VarTypeID").val();
+  var format = $("#Format").val();
+  var IdParameter = $("#idParameter").val();
+  var IdUnit = $("#idUnit").val();
   var license = $("#License").val();
   var phenUri = $("#PhenomenonUri").val();
   var wktObsWin = $("#wktObsWin").val();
   var epsgCode = $("#EPSGcode").val();
+ 
+  //var parameter=$(Variable).val();
+  //var result= parameter.split('');
+  
+  
   if (epsgCode!=""){
     wktObsWin = "<![CDATA[<http://www.opengis.net/def/crs/EPSG/0/"+epsgCode+">"+wktObsWin+"]]>"
   }
@@ -32,7 +46,7 @@ $("#entrySubmitButton").click(function(){
     return;
   }
 
-  var entry = new Entry(sourceUrl,format,varType,license,phenUri,wktObsWin,beginDate.toUTCString(),endDate.toUTCString());
+  var entry = new Entry(sourceUrl,IdTitle,IdProject,IdInstitute,IdAuthor,IdAbstract,Idkeyword,IdCitation,varType,format,IdParameter,IdUnit,license,phenUri,wktObsWin,beginDate.toUTCString(),endDate.toUTCString());
 
   //posting the data to the Webapp that converts the data to RDF and inserts it to the Parliament server
   jQuery.ajax({

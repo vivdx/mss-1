@@ -11,11 +11,25 @@
  */
 function Entry(sourceURL,format,dataType,license,phenomenon,obsWindow,obsWinTmpStart,obsWinTmpEnd){
 	this.sourceURL=sourceURL;
+	this.IdTitle = IdTitle;
+    this.IdProject = IdProject;
+    this.IdInstitute = IdInstitute;
+    this.IdAuthor = IdAuthor;
+    this.IdAbstract = IdAbstract;
+    this.IdKeyword = IdKeyword;
+    this.IdCitation = IdCitation;
+    this.varType = varType;
 	this.format=format;
+	this.IdParameter=IdParameter;
+	this.IdUnit=IdUnit;
 	this.dataType=dataType;
 	this.license=license;
 	this.phenomenon=phenomenon;
 	this.obsWindowWKT=obsWindow;
 	this.obsWindowTempStart=obsWinTmpStart;
 	this.obsWindowTempEnd=obsWinTmpEnd;
+	//this.paramter=result;
+	//this.sourceURL=sourceURL;
+	//this.sourceURL=sourceURL;
+	// var entery new.. .. add in order
 }
