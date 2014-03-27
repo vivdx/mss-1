@@ -20,16 +20,17 @@ function Entry(sourceURL,format,dataType,license,phenomenon,obsWindow,obsWinTmpS
     this.IdCitation = IdCitation;
     this.varType = varType;
 	this.format=format;
-	this.IdParameter=IdParameter;
-	this.IdUnit=IdUnit;
+	
+//	this.IdParameter=IdParameter;
+    this.IdParameter=AllParameter;
+//	this.IdUnit=IdUnit;
+    this.IdUnit=AllUnit;
+	
 	this.dataType=dataType;
 	this.license=license;
 	this.phenomenon=phenomenon;
 	this.obsWindowWKT=obsWindow;
 	this.obsWindowTempStart=obsWinTmpStart;
 	this.obsWindowTempEnd=obsWinTmpEnd;
-	//this.paramter=result;
-	//this.sourceURL=sourceURL;
-	//this.sourceURL=sourceURL;
-	// var entery new.. .. add in order
+	
 }

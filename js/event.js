@@ -21,8 +21,12 @@ $("#entrySubmitButton").click(function(){
   var IdCitation = $("#idCitation").val();
   var varType = $("#VarTypeID").val();
   var format = $("#Format").val();
+  
   var IdParameter = $("#idParameter").val();
+  var AllParameter = IdParameter.split('');
   var IdUnit = $("#idUnit").val();
+  var AllUnit = IdUnit.split('');
+  
   var license = $("#License").val();
   var phenUri = $("#PhenomenonUri").val();
   var wktObsWin = $("#wktObsWin").val();
