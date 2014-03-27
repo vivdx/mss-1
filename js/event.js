@@ -386,7 +386,7 @@ $("#suInfo").clickover({
 $("#varTypeInfo").clickover({
 	global_close: 'false',
 	placement : 'right',
-	title : 'Statistical Variable Type',
+	title : 'Variable Type',
     content: 'The statistical variable type indicates of which type the dataset is, e.g. whether it is a point pattern or a geostatistical variable. If you are not sure about the variable type, please have a quick look on our idea page. The variable type is mandatory.',
     trigger: 'hover'
 	}
@@ -410,6 +410,23 @@ $("#formatInfo").clickover({
   }
 );
 
+$("#paraInfo").clickover({
+  global_close: 'false',
+  placement : 'bottom',
+  title : 'Parameters',
+    content: 'Parameter must have a unit.',
+    trigger: 'hover'
+  }
+);
+
+$("#unitInfo").clickover({
+  global_close: 'false',
+  placement : 'bottom',
+  title : 'Unit',
+    content: 'Unified Code for Units of Measure (the UCUM).',
+    trigger: 'hover'
+  }
+);
 
 $("#licenseInfo").clickover({
   global_close: 'false',
