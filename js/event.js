@@ -521,6 +521,58 @@ $("#endInfo").clickover({
   }
 );
 
+/* 
+***************************
+function for "+" symbol to add multiple Parametes and Unit in a row 
+****************************
+ */
+
+ $("#addPara").click( function() {
+   newRow = "<tr>" +
+        "<td class='Parameter'>"$(this)."#idParameter""</td>" +
+        "<td class='Unit'>"$(this)."#idUnit""</td>" +
+        
+    "</tr>";
+   $('#myTable > tbody > tr:last').after(newRow);
+});
+ /*
+ $("#addPara").click( function() {
+ $("#myTable").last().append("<tr><td class='Parameter'>E</td></tr>");
+ $("#myTable").append("<tr><td class='Unit'>m</td></tr>");          
+                
+ });
+*/
+  //$('#myTable > tbody:last').append('<tr>...</tr><tr>...</tr>');
+//});
+$('#remPara').click( function() {
+  //$('#myTable').remove('<tr><td class='Parameter'></td></tr>');
+  $('#myTable').remove();
+});
+
+/* 
+***************************
+function to show / hide the table 
+****************************
+ 
+$('#myTable').ready(function(){
+    $('#film td').hide();
+});
+
+$(document).ready(function(){
+var n1 = 0;
+      $('#film th.1').click(function(){
+         if(n1 == 0){
+         $('#film td.1').show();
+         n1 = 1;
+         }else{
+        $('#film td.1').hide();
+         n1 = 0;}
+       });
+
+
+*/
+
 //end $(document).ready(function(){
 });
+
 
