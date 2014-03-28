@@ -1,4 +1,6 @@
-mss
+Earlier mss
+
+Now being developed as 'LOD Portal for Meaningful Analysis' as a part of Master Studies in GI at ifgi, Muenster, Germany.
 ===
 
 Meaningful Spatial Statistics

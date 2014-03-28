@@ -14,7 +14,8 @@
     <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
     <link href="css/leaflet.css" rel="stylesheet"/>
     <link href="css/leaflet.draw.css" rel="stylesheet"/>
-    
+	
+	
     <!-- external scripts-->
     <script src="lib/jquery-1.9.1.js"></script>
     <!-- datetimepicker is used for adding observed temporal window in add dataset form-->
@@ -318,24 +319,63 @@
               <span id="formatInfo" class="help-inline" rel="clickover"><i class="icon-info-sign"></i></span>
             </div>
            </div>
-		   
-		   <!--Parameters-->
+								
+			<!--Para & Unit-->					
+								
+			<div class="control-group">	
+			<label class="control-label" for="Parameter">Parameter(s) / Unit</label>
+				<div class="controls">
+					<input class="input-xlarge form-inline" type="text" id="idParameter" value="CO2, NOx, etc.">			
+					<input class="input-xlarge form-inline" type="text" id="idUnit" value="PPM, utm, etc.">
+					<span id="addPara" class="btn" rel="clickover"><i class="icon-plus-sign"></i></a></span>
+					<span id="paraUnitInfo" class="help-inline" rel="clickover"><i class="icon-info-sign"></i></span>
+					<br>
+					<br>
+					<table class="table table-striped table table-bordered table table-condensed span4">
+					
+									<thead>
+											<tr>
+												<th>Parmaeter</th>
+												<th>Unit</th>
+											</tr>
+									</thead>
+									<tbody>
+										 <tr>
+											<td> NO</td>
+											<td> ppm</td>
+										</tr>	
+										<tr>
+											<td> CO</td>
+											<td> ppm</td>
+										</tr>
+										<tr>
+											<td> CO2</td>
+											<td> ppm</td>
+										</tr>
+									</tbody>
+								</table>
+								
+				</div>
+			</div>
+			
+			
+		   <!--Parameters
            <div class="control-group">
             <label class="control-label" for="idParameter">Parameter(s)</label>
             <div class="controls">
               <input class="input-xlarge" type="text" id="idParameter" value="CO2, NOx, etc.">
               <span id="paraInfo" class="help-inline" rel="clickover"><i class="icon-info-sign"></i></span>
             </div>
-           </div>
+           </div>    -->
 
-		   <!--Unit-->
+		   <!--Unit
            <div class="control-group">
             <label class="control-label" for="idUnit">Unit</label>
             <div class="controls">
               <input class="input-xlarge" type="text" id="idUnit" value="http://unitsofmeasure.org/ucum.html">
               <span id="unitInfo" class="help-inline" rel="clickover"><i class="icon-info-sign"></i></span>
             </div>
-           </div>
+           </div>   -->
 		   		
            <!--License-->
            <div class="control-group">

@@ -428,6 +428,15 @@ $("#formatInfo").clickover({
   }
 );
 
+$("#paraUnitInfo").clickover({
+  global_close: 'false',
+  placement : 'bottom',
+  title : 'Parameters',
+    content: 'Parameter must have a unit. Use standart code from - Unified Code for Units of Measure (the UCUM).',
+    trigger: 'hover'
+  }
+);
+
 $("#paraInfo").clickover({
   global_close: 'false',
   placement : 'bottom',
