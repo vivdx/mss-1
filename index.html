@@ -323,42 +323,26 @@
 			<!--Para & Unit-->					
 								
 			<div class="control-group">	
-			<label class="control-label" for="Parameter">Parameter(s) / Unit</label>
-				<div class="controls">
-					<input class="input-xlarge form-inline" type="text" id="idParameter" value="CO2, NOx, etc.">			
-					<input class="input-xlarge form-inline" type="text" id="idUnit" value="PPM, utm, etc.">
-					<span id="addPara" class="btn" rel="clickover" value="Append"><i class="icon-plus-sign"></i></span>
-					<span id="remPara" class="btn" rel="clickover" value="Remove"><i class="icon-minus-sign"></i></span>
-					<span id="paraUnitInfo" class="help-inline" rel="clickover"><i class="icon-info-sign"></i></span>
-					<br>
-					<br>
-					<table id="myTable" class="table table-striped table table-bordered table table-condensed span4">
-					
-									<thead>
-											<tr>
-												<th class="Parameter">Parmaeter</th>
-												<th class="Unit">Unit</th>
-											</tr>
-									</thead>
-									<tbody>
-										 <tr>
-											<td class="Parameter">NO</td>
-											<td class="Unit">ppm</td>
-										</tr>	
-										<tr>
-											<td class="Parameter">CO</td>
-											<td class="Unit">ppm</td>
-										</tr>
-										<tr>
-											<td class="Parameter">CO2</td>
-											<td class="Unit">ppm</td>
-										</tr>
-									</tbody>
-								</table>
-								
-				</div>
+				<label class="control-label" for="Parameter">Parameter(s) / Unit</label>
+				<span id="paraUnitInfo" class="help-inline" rel="clickover"><i class="icon-info-sign"></i></span>
+					<!-- <div class="controls"> -->
+						<!-- <span id="remPara" class="btn" rel="clickover" value="Remove"><i class="icon-minus-sign"></i></span>
+						 -->
+				<table id="myTable" class="table table-striped table table-bordered table table-condensed span4">
+					<tbody id="parameterBody" class="parameters">
+						<tr>
+							<td><input class="input-xlarge form-inline" type="text" id="idParameter" placeholder="Parameter"></td>
+							<td><input class="input-xlarge form-inline" type="text" id="idUnit" placeholder="Unit"></td>
+							<td><span id="addPara" class="btn" rel="clickover" value="Append"><i class="icon-plus-sign"></i></span></td>
+							<td><span id="remPara" class="btn" rel="clickover" value="Remove"><i class="icon-minus-sign"></i></span></td>
+						</tr>
+					</tbody>
+				</table>
+									
+				<!-- </div> -->
 			</div>
-			
+							
+					
 			
 		   <!--Parameters
            <div class="control-group">

@@ -527,26 +527,23 @@ function for "+" symbol to add multiple Parametes and Unit in a row
 ****************************
  */
 
- $("#addPara").click( function() {
-   newRow = "<tr>" +
-        "<td class='Parameter'>"$(this)."#idParameter""</td>" +
-        "<td class='Unit'>"$(this)."#idUnit""</td>" +
-        
-    "</tr>";
-   $('#myTable > tbody > tr:last').after(newRow);
+$("#addPara").click( function() {
+
+  var toAppend = 
+  '<tr>\
+      <td class="Parameter"><input class="input-xlarge form-inline" type="text" id="idParameter" placeholder="Parameter"></td>\
+      <td class="Unit"><input class="input-xlarge form-inline" type="text" id="idUnit" placeholder="Unit"></td>\
+   </tr>'
+
+  $("#parameterBody").append(toAppend);
 });
- /*
- $("#addPara").click( function() {
- $("#myTable").last().append("<tr><td class='Parameter'>E</td></tr>");
- $("#myTable").append("<tr><td class='Unit'>m</td></tr>");          
-                
- });
-*/
-  //$('#myTable > tbody:last').append('<tr>...</tr><tr>...</tr>');
-//});
+
 $('#remPara').click( function() {
-  //$('#myTable').remove('<tr><td class='Parameter'></td></tr>');
-  $('#myTable').remove();
+  var count = $("#parameterBody tr").length;
+  if(count > 1)
+  	$("#parameterBody tr:last-child").remove();
+});
+
 });
 
 /* 
@@ -573,6 +570,6 @@ var n1 = 0;
 */
 
 //end $(document).ready(function(){
-});
+
 
 
