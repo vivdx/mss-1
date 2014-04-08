@@ -12,19 +12,19 @@ Function that is invoked, when submit button in add dataset panel is clicked;
  */
 $("#entrySubmitButton").click(function(){
   var sourceUrl = $("#SourceURL").val();
-  var IdTitle = $("#idTitle").val();
-  var IdProject = $("#idProject").val();
-  var IdInstitute = $("#idInstitute").val();
-  var IdAuthor = $("#idAuthor").val();
-  var IdAbstract = $("#idAbstract").val();
-  var IdKeyword = $("#idKeyword").val();
-  var IdCitation = $("#idCitation").val();
+  var idTitle = $("#idTitle").val();
+  var idProject = $("#idProject").val();
+  var InstituteURL = $("#InstituteURL").val();
+  var idAuthor = $("#idAuthor").val();
+  var idAbstract = $("#idAbstract").val();
+  var idKeyword = $("#idKeyword").val();
+  var idCitation = $("#idCitation").val();
   var varType = $("#VarTypeID").val();
   var format = $("#Format").val();
   
-  var IdParameter = $("#idParameter").val();
+  var idParameter = $("#idParameter").val();
   var AllParameter = IdParameter.split('');
-  var IdUnit = $("#idUnit").val();
+  var idUnit = $("#idUnit").val();
   var AllUnit = IdUnit.split('');
   
   var license = $("#License").val();
@@ -50,7 +50,7 @@ $("#entrySubmitButton").click(function(){
     return;
   }
 
-  var entry = new Entry(sourceUrl,IdTitle,IdProject,IdInstitute,IdAuthor,IdAbstract,Idkeyword,IdCitation,varType,format,IdParameter,IdUnit,license,phenUri,wktObsWin,beginDate.toUTCString(),endDate.toUTCString());
+  var entry = new Entry(sourceUrl,idTitle,idProject,InstituteURL,idAuthor,idAbstract,idkeyword,idCitation,varType,format,idParameter,idUnit,license,phenUri,wktObsWin,beginDate.toUTCString(),endDate.toUTCString());
 
   //posting the data to the Webapp that converts the data to RDF and inserts it to the Parliament server
   jQuery.ajax({
@@ -414,7 +414,7 @@ $("#addInfoInfo").clickover({
   global_close: 'false',
   placement : 'right',
   title : 'Additional information',
-    content: 'You can add additional information like license, format or information about the observed or modelled phenomenon here. The additional information is optional.',
+    content: 'You can add additional information like parameter and unit or information about the observed or modelled phenomenon here.',
     trigger: 'hover'
   }
 );
@@ -428,29 +428,20 @@ $("#formatInfo").clickover({
   }
 );
 
+$("#suComment").clickover({
+  global_close: 'false',
+  placement : 'bottom',
+  title : 'Comment',
+    content: 'To put additional information for the resource ... .',
+    trigger: 'hover'
+  }
+);
+
 $("#paraUnitInfo").clickover({
   global_close: 'false',
   placement : 'bottom',
   title : 'Parameters',
     content: 'Parameter must have a unit. Use standart code from - Unified Code for Units of Measure (the UCUM).',
-    trigger: 'hover'
-  }
-);
-
-$("#paraInfo").clickover({
-  global_close: 'false',
-  placement : 'bottom',
-  title : 'Parameters',
-    content: 'Parameter must have a unit.',
-    trigger: 'hover'
-  }
-);
-
-$("#unitInfo").clickover({
-  global_close: 'false',
-  placement : 'bottom',
-  title : 'Unit',
-    content: 'Unified Code for Units of Measure (the UCUM).',
     trigger: 'hover'
   }
 );

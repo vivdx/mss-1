@@ -9,22 +9,24 @@
  * @param  {string} phenomenon
  * @param  {bbox} obsWindow
  */
-function Entry(sourceURL,format,dataType,license,phenomenon,obsWindow,obsWinTmpStart,obsWinTmpEnd){
+function Entry(sourceURL,format,dataType,license,phenomenon,obsWindow,obsWinTmpStart,obsWinTmpEnd, idTitle, idProject, idInstitute, idAuthor, idAbstract,
+		idKeyword, idCitation, varType, comment, parameter, unit){
 	this.sourceURL=sourceURL;
-	this.IdTitle = IdTitle;
-    this.IdProject = IdProject;
-    this.IdInstitute = IdInstitute;
-    this.IdAuthor = IdAuthor;
-    this.IdAbstract = IdAbstract;
-    this.IdKeyword = IdKeyword;
-    this.IdCitation = IdCitation;
+	this.IdTitle = idTitle;
+    this.IdProject = idProject;
+    this.IdInstitute = idInstitute;
+    this.IdAuthor = idAuthor;
+    this.IdAbstract = idAbstract;
+    this.IdKeyword = idKeyword;
+    this.IdCitation = idCitation;
     this.varType = varType;
 	this.format=format;
+	this.comment=comment;
 	
 //	this.IdParameter=IdParameter;
-    this.IdParameter=AllParameter;
+    this.IdParameter=parameter;
 //	this.IdUnit=IdUnit;
-    this.IdUnit=AllUnit;
+    this.IdUnit=unit;
 	
 	this.dataType=dataType;
 	this.license=license;
