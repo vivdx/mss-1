@@ -14,7 +14,7 @@ $("#entrySubmitButton").click(function(){
   var sourceUrl = $("#SourceURL").val();
   var idTitle = $("#idTitle").val();
   var idProject = $("#idProject").val();
-  var InstituteURL = $("#InstituteURL").val();
+  var idInstituteURL = $("#idInstituteURL").val();
   var idAuthor = $("#idAuthor").val();
   var idAbstract = $("#idAbstract").val();
   var idKeyword = $("#idKeyword").val();
@@ -514,7 +514,7 @@ $("#endInfo").clickover({
 
 /* 
 ***************************
-function for "+" symbol to add multiple Parametes and Unit in a row 
+function for "+" symbol to add multiple Parameters and Unit in a row 
 ****************************
  */
 

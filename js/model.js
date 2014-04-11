@@ -14,7 +14,7 @@ function Entry(sourceURL,format,dataType,license,phenomenon,obsWindow,obsWinTmpS
 	this.sourceURL=sourceURL;
 	this.IdTitle = idTitle;
     this.IdProject = idProject;
-    this.IdInstitute = idInstitute;
+    this.InstituteURL =idInstituteURL;
     this.IdAuthor = idAuthor;
     this.IdAbstract = idAbstract;
     this.IdKeyword = idKeyword;
@@ -23,9 +23,7 @@ function Entry(sourceURL,format,dataType,license,phenomenon,obsWindow,obsWinTmpS
 	this.format=format;
 	this.comment=comment;
 	
-//	this.IdParameter=IdParameter;
     this.IdParameter=parameter;
-//	this.IdUnit=IdUnit;
     this.IdUnit=unit;
 	
 	this.dataType=dataType;
