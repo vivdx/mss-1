@@ -8,7 +8,7 @@ $(document).ready(function(){
   var addInfoPanelOpen = false;
   var addDesPanelOpen = false;
 /*
-Function that is invoked, when submit button in add dataset panel is clicked; 
+Function that is invoked, when submit button in add dataset panel is clicked;
  */
 $("#entrySubmitButton").click(function(){
   var sourceUrl = $("#SourceURL").val();
@@ -21,28 +21,36 @@ $("#entrySubmitButton").click(function(){
   var idCitation = $("#idCitation").val();
   var varType = $("#VarTypeID").val();
   var format = $("#Format").val();
+  var comment = $("#Comment").val();
   
-  var idParameter = $("#idParameter").val();
-  var AllParameter = IdParameter.split('');
-  var idUnit = $("#idUnit").val();
-  var AllUnit = IdUnit.split('');
-  
+  //---------------------------------------------------------
+
+  var idParameter = new Array();
+  var idUnit = new Array();
+
+  var counter = 0;
+
+  $("#parameterBody tr").each(function(){
+  	idParameter[counter] = $(this).find('.idParameter').val();
+    idUnit[counter] = $(this).find('.idUnit').val();
+    counter++;
+	});
+
+  //---------------------------------------------------------
   var license = $("#License").val();
   var phenUri = $("#PhenomenonUri").val();
   var wktObsWin = $("#wktObsWin").val();
   var epsgCode = $("#EPSGcode").val();
- 
-  //var parameter=$(Variable).val();
-  //var result= parameter.split('');
-  
-  
+
+
+
   if (epsgCode!=""){
     wktObsWin = "<![CDATA[<http://www.opengis.net/def/crs/EPSG/0/"+epsgCode+">"+wktObsWin+"]]>"
   }
   var beginDate = new Date($('#beginpicker').data('datetimepicker').getDate());
   var endDate = new Date($('#endpicker').data('datetimepicker').getDate());
-  
-  if (isTemporalString(varType) 
+
+  if (isTemporalString(varType)
     &&(
       (beginDate.getTime()==endDate.getTime())
       ||endDate<beginDate)){
@@ -50,12 +58,17 @@ $("#entrySubmitButton").click(function(){
     return;
   }
 
-  var entry = new Entry(sourceUrl,idTitle,idProject,InstituteURL,idAuthor,idAbstract,idkeyword,idCitation,varType,format,idParameter,idUnit,license,phenUri,wktObsWin,beginDate.toUTCString(),endDate.toUTCString());
+  var entry = new Entry(sourceUrl,format,varType,license,phenUri,wktObsWin,beginDate.toUTCString(),
+                        endDate.toUTCString(),idTitle,idProject,idInstituteURL,idAuthor,idAbstract,
+                        idKeyword,comment,idCitation,idParameter,idUnit);
+  console.log(entry);
+  var entryJSON = JSON.stringify(entry);
+  console.log(entryJSON);
 
   //posting the data to the Webapp that converts the data to RDF and inserts it to the Parliament server
   jQuery.ajax({
           //url: "http://giv-mss.uni-muenster.de:8080/ts-proxy",
-          url: "http://giv-mss.uni-muenster.de:8080/ts-proxy",
+          url: "http://localhost:8080/ts-proxy",
           type: "POST",
           data: JSON.stringify(entry),
           contentType: "application/json"
@@ -79,9 +92,11 @@ $("#savePolygonBtn").click(function(){
   }
 });
 
+//http://giv-mss.uni-muenster.de:8080/ts-proxy?datatype=
+
 $("#querySubmitButton").click(function(){
   var datatype = $("#VarTypeIDSelector").val(), entries, tableHeading;
-  $.getJSON('http://giv-mss.uni-muenster.de:8080/ts-proxy?datatype='+datatype, function(data) {
+  $.getJSON('http://localhost:8080/ts-proxy'+datatype, function(data) {
           entries = data.Entries;
           if (entries.length==0){
             alert("No entries found!");
@@ -114,7 +129,7 @@ $("#querySubmitButton").click(function(){
                           .append($("<td></td>").append($("<strong></strong>").text("Phenomenon")))
                           .append($("<td></td>").append($("<strong></strong>").text("License")))
                           .append($("<td></td>").append($("<strong></strong>").text("Format")))
-                    ) 
+                    )
                   )
                 .append(
                   $("<tbody></tbody>")
@@ -131,7 +146,7 @@ $("#querySubmitButton").click(function(){
                   );
           }
         });
-  
+
 });
 
 
@@ -231,7 +246,7 @@ $("#addDesBtn").click(function(){
           $("#obsWinSpContainer").css("display","none");
           $("#obsWinTempContainer").css("display","none");
         }
-    } 
+    }
 });
 $("#addInfoBtn").click(function(){
     if (addInfoPanelOpen){
@@ -267,7 +282,7 @@ $("#addInfoBtn").click(function(){
           $("#obsWinSpContainer").css("display","none");
           $("#obsWinTempContainer").css("display","none");
         }
-    } 
+    }
 });
 $("#VarTypeID").change(function(){
   var patt=/PointPattern/g;
@@ -331,9 +346,9 @@ $(function() {
     });
   });
 
-/* 
+/*
 ***************************
-CLICKOVERS 
+CLICKOVERS
 ****************************
 */
 
@@ -512,18 +527,18 @@ $("#endInfo").clickover({
   }
 );
 
-/* 
+/*
 ***************************
-function for "+" symbol to add multiple Parameters and Unit in a row 
+function for "+" symbol to add multiple Parameters and Unit in a row
 ****************************
  */
 
 $("#addPara").click( function() {
 
-  var toAppend = 
+  var toAppend =
   '<tr>\
-      <td class="Parameter"><input class="input-xlarge form-inline" type="text" id="idParameter" placeholder="Parameter"></td>\
-      <td class="Unit"><input class="input-xlarge form-inline" type="text" id="idUnit" placeholder="Unit"></td>\
+      <td class="Parameter"><input class="input-xlarge form-inline idParameter" type="text" placeholder="Parameter"></td>\
+      <td class="Unit"><input class="input-xlarge form-inline idUnit" type="text" placeholder="Unit"></td>\
    </tr>'
 
   $("#parameterBody").append(toAppend);
@@ -537,11 +552,11 @@ $('#remPara').click( function() {
 
 });
 
-/* 
+/*
 ***************************
-function to show / hide the table 
+function to show / hide the table
 ****************************
- 
+
 $('#myTable').ready(function(){
     $('#film td').hide();
 });

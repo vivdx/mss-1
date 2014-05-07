@@ -9,23 +9,12 @@
  * @param  {string} phenomenon
  * @param  {bbox} obsWindow
  */
-function Entry(sourceURL,format,dataType,license,phenomenon,obsWindow,obsWinTmpStart,obsWinTmpEnd, idTitle, idProject, idInstitute, idAuthor, idAbstract,
-		idKeyword, idCitation, varType, comment, parameter, unit){
+function Entry(sourceURL,format,dataType,license,phenomenon,obsWindow,obsWinTmpStart,obsWinTmpEnd,
+				idTitle, idProject, idInstituteURL, idAuthor, idAbstract,
+				idKeyword, idCitation, comment, parameter, unit){
+				
 	this.sourceURL=sourceURL;
-	this.IdTitle = idTitle;
-    this.IdProject = idProject;
-    this.InstituteURL =idInstituteURL;
-    this.IdAuthor = idAuthor;
-    this.IdAbstract = idAbstract;
-    this.IdKeyword = idKeyword;
-    this.IdCitation = idCitation;
-    this.varType = varType;
 	this.format=format;
-	this.comment=comment;
-	
-    this.IdParameter=parameter;
-    this.IdUnit=unit;
-	
 	this.dataType=dataType;
 	this.license=license;
 	this.phenomenon=phenomenon;
@@ -33,4 +22,16 @@ function Entry(sourceURL,format,dataType,license,phenomenon,obsWindow,obsWinTmpS
 	this.obsWindowTempStart=obsWinTmpStart;
 	this.obsWindowTempEnd=obsWinTmpEnd;
 	
+	this.IdTitle = idTitle;
+    this.IdProject = idProject;
+    this.InstituteURL =idInstituteURL;
+    this.IdAuthor = idAuthor;
+    this.IdAbstract = idAbstract;
+    this.IdKeyword = idKeyword;
+    this.IdCitation = idCitation;
+  //  this.varType = varType;
+    this.comment=comment; 
+    this.IdParameter=parameter;
+    this.IdUnit=unit;
+
 }
