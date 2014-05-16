@@ -22,16 +22,16 @@ function Entry(sourceURL,format,dataType,license,phenomenon,obsWindow,obsWinTmpS
 	this.obsWindowTempStart=obsWinTmpStart;
 	this.obsWindowTempEnd=obsWinTmpEnd;
 	
-	this.IdTitle = idTitle;
-    this.IdProject = idProject;
-    this.InstituteURL =idInstituteURL;
-    this.IdAuthor = idAuthor;
-    this.IdAbstract = idAbstract;
-    this.IdKeyword = idKeyword;
-    this.IdCitation = idCitation;
+	this.idTitle = idTitle;
+    this.idProject = idProject;
+    this.idInstituteURL =idInstituteURL;
+    this.idAuthor = idAuthor;
+    this.idAbstract = idAbstract;
+    this.idKeyword = idKeyword;
+    this.idCitation = idCitation;
   //  this.varType = varType;
     this.comment=comment; 
-    this.IdParameter=parameter;
-    this.IdUnit=unit;
+    this.idParameter=parameter;
+    this.idUnit=unit;
 
 }

@@ -60,10 +60,10 @@ $("#entrySubmitButton").click(function(){
 
   var entry = new Entry(sourceUrl,format,varType,license,phenUri,wktObsWin,beginDate.toUTCString(),
                         endDate.toUTCString(),idTitle,idProject,idInstituteURL,idAuthor,idAbstract,
-                        idKeyword,comment,idCitation,idParameter,idUnit);
-  console.log(entry);
-  var entryJSON = JSON.stringify(entry);
-  console.log(entryJSON);
+                        idKeyword,idCitation,comment,idParameter,idUnit);
+ // console.log(entry);
+ // var entryJSON = JSON.stringify(entry);
+ // console.log(entryJSON);
 
   //posting the data to the Webapp that converts the data to RDF and inserts it to the Parliament server
   jQuery.ajax({
@@ -72,7 +72,8 @@ $("#entrySubmitButton").click(function(){
           type: "POST",
           data: JSON.stringify(entry),
           contentType: "application/json"
-  })
+		    })
+		
   .done(function() { alert("Entry successfully inserted!"); })
   .fail(function(){alert("Error while inserting entry!")});
 });
@@ -163,7 +164,8 @@ $("#mapPanelBtn").click(function(){
     if (!mapAdd){
       $("#mapPanelAdd").css("height","400px");
   	 mapAdd = L.map("mapPanelAdd").setView([51.505, -0.09], 13);
-     L.tileLayer('http://{s}.tile.cloudmade.com/c69899fe599542e9ba5cdc63d9a3870c/997/256/{z}/{x}/{y}.png', {
+	 // L.tileLayer('http://{s}.tile.cloudmade.com/c69899fe599542e9ba5cdc63d9a3870c/997/256/{z}/{x}/{y}.png',
+     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
       maxZoom: 18
       }).addTo(mapAdd);
