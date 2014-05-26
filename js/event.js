@@ -27,12 +27,13 @@ $("#entrySubmitButton").click(function(){
 
   var idParameter = new Array();
   var idUnit = new Array();
-
+  var idVarType = new Array();
   var counter = 0;
 
   $("#parameterBody tr").each(function(){
   	idParameter[counter] = $(this).find('.idParameter').val();
     idUnit[counter] = $(this).find('.idUnit').val();
+	idVarType[counter] = $(this).find('.idVarType').val();
     counter++;
 	});
 
@@ -50,7 +51,7 @@ $("#entrySubmitButton").click(function(){
   var beginDate = new Date($('#beginpicker').data('datetimepicker').getDate());
   var endDate = new Date($('#endpicker').data('datetimepicker').getDate());
 
-  if (isTemporalString(varType)
+   if (isTemporalString(varType)
     &&(
       (beginDate.getTime()==endDate.getTime())
       ||endDate<beginDate)){
@@ -58,7 +59,7 @@ $("#entrySubmitButton").click(function(){
     return;
   }
 
-  var entry = new Entry(sourceUrl,format,varType,license,phenUri,wktObsWin,beginDate.toUTCString(),
+  var entry = new Entry(sourceUrl,format,idVarType,license,phenUri,wktObsWin,beginDate.toUTCString(),
                         endDate.toUTCString(),idTitle,idProject,idInstituteURL,idAuthor,idAbstract,
                         idKeyword,idCitation,comment,idParameter,idUnit);
  // console.log(entry);
@@ -218,123 +219,27 @@ $("#addDesBtn").click(function(){
     if (addDesPanelOpen){
       $("#addDesBtn").text("Add Description");
       addDesPanelOpen=false;
-    }
-    /*
-    If map panel is closed and button is clicked, change button text to close map panel
-     */
+	  }
+   
     else{
       $("#addDesBtn").text("Close Description form");
       addDesPanelOpen=true;
-      var patt=/PointPattern/g;
-      var varType = $("#VarTypeID").val();
-      if (patt.test(varType)){
-        var pattSpat1=/SpatialPoint/g;
-        var pattSpat2=/Spatio/g;
-        if (pattSpat1.test(varType)||pattSpat2.test(varType)) {
-          $("#obsWinSpContainer").css("display","inline");
-        }else {
-          $("#obsWinSpContainer").css("display","none");
-        }
-
-        var pattTemp1=/temporal/g;
-        var pattTemp2=/Temporal/g;
-        if (pattTemp1.test(varType)||pattTemp2.test(varType)) {
-          $("#obsWinTempContainer").css("display","inline");
-        } else {
-          $("#obsWinTempContainer").css("display","none");
-          }
-        }
-        else {
-          $("#obsWinSpContainer").css("display","none");
-          $("#obsWinTempContainer").css("display","none");
-        }
+    
     }
 });
 $("#addInfoBtn").click(function(){
-    if (addInfoPanelOpen){
+   if (addInfoPanelOpen){
       $("#addInfoBtn").text("Add additional information");
       addInfoPanelOpen=false;
     }
     /*
     If map panel is closed and button is clicked, change button text to close map panel
      */
-    else{
+    else {
       $("#addInfoBtn").text("Close additional information form");
       addInfoPanelOpen=true;
-      var patt=/PointPattern/g;
-      var varType = $("#VarTypeID").val();
-      if (patt.test(varType)){
-        var pattSpat1=/SpatialPoint/g;
-        var pattSpat2=/Spatio/g;
-        if (pattSpat1.test(varType)||pattSpat2.test(varType)) {
-          $("#obsWinSpContainer").css("display","inline");
-        }else {
-          $("#obsWinSpContainer").css("display","none");
-        }
-
-        var pattTemp1=/temporal/g;
-        var pattTemp2=/Temporal/g;
-        if (pattTemp1.test(varType)||pattTemp2.test(varType)) {
-          $("#obsWinTempContainer").css("display","inline");
-        } else {
-          $("#obsWinTempContainer").css("display","none");
-          }
-        }
-        else {
-          $("#obsWinSpContainer").css("display","none");
-          $("#obsWinTempContainer").css("display","none");
-        }
-    }
+       }
 });
-$("#VarTypeID").change(function(){
-  var patt=/PointPattern/g;
-  var varType = $("#VarTypeID").val();
-  if (addInfoPanelOpen && patt.test(varType)){
-    var pattSpat1=/SpatialPoint/g;
-    var pattSpat2=/Spatio/g;
-    if (pattSpat1.test(varType)||pattSpat2.test(varType)) {
-      $("#obsWinSpContainer").css("display","inline");
-    } else {
-          $("#obsWinSpContainer").css("display","none");
-        }
-    var pattTemp1=/temporal/g;
-    var pattTemp2=/Temporal/g;
-    if (pattTemp1.test(varType)||pattTemp2.test(varType)) {
-      $("#obsWinTempContainer").css("display","inline");
-    }else {
-          $("#obsWinTempContainer").css("display","none");
-          }
-  }
-  else if (addInfoPanelOpen) {
-    $("#obsWinSpContainer").css("display","none");
-    $("#obsWinTempContainer").css("display","none");
-  }
-});
-$("#VarTypeID").change(function(){
-  var patt=/PointPattern/g;
-  var varType = $("#VarTypeID").val();
-  if (addDesPanelOpen && patt.test(varType)){
-    var pattSpat1=/SpatialPoint/g;
-    var pattSpat2=/Spatio/g;
-    if (pattSpat1.test(varType)||pattSpat2.test(varType)) {
-      $("#obsWinSpContainer").css("display","inline");
-    } else {
-          $("#obsWinSpContainer").css("display","none");
-        }
-    var pattTemp1=/temporal/g;
-    var pattTemp2=/Temporal/g;
-    if (pattTemp1.test(varType)||pattTemp2.test(varType)) {
-      $("#obsWinTempContainer").css("display","inline");
-    }else {
-          $("#obsWinTempContainer").css("display","none");
-          }
-  }
-  else if (addDesPanelOpen) {
-    $("#obsWinSpContainer").css("display","none");
-    $("#obsWinTempContainer").css("display","none");
-  }
-});
-
 
 $(function() {
     $('#beginpicker').datetimepicker({
@@ -539,9 +444,24 @@ $("#addPara").click( function() {
 
   var toAppend =
   '<tr>\
-      <td class="Parameter"><input class="input-xlarge form-inline idParameter" type="text" placeholder="Parameter"></td>\
-      <td class="Unit"><input class="input-xlarge form-inline idUnit" type="text" placeholder="Unit"></td>\
+      <td style="max-width:120px;"><input class="input-xlarge form-inline idParameter" type="text" placeholder="Parameter"></td>\
+	  <td style="max-width:120px;"><input class="input-xlarge form-inline idUnit" type="text" placeholder="Unit"></td>\
+              <td style="max-width:120px;">\
+                <select id="VarTypeIDSelector" class="idVarType">\
+                  <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#SpatialPointPattern">Spatial Point Pattern</option>\
+                  <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#TemporalPointPattern">Temporal Point Pattern</option>\
+                  <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#SpatioTemporalPointPattern">Spatiotemporal Point Pattern</option>\
+                  <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedSpatialPointPattern">Marked Spatial Point Pattern</option>\
+                  <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedTemporalPointPattern">Marked Temporal Point Pattern</option>\
+                  <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedSpatioTemporalPointPattern">Marked Spatiotemporal Point Pattern</option>\
+                  <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#GeostatisticalVariable">Field Data</option>\
+                  <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#LatticeVariable">Lattice Data</option>\
+                  <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#Trajectory">Trajectories</option>\
+                  <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedTrajectory">Marked Trajectories</option>\
+                </select>\
+              </td>\
    </tr>'
+
 
   $("#parameterBody").append(toAppend);
 });

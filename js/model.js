@@ -29,7 +29,7 @@ function Entry(sourceURL,format,dataType,license,phenomenon,obsWindow,obsWinTmpS
     this.idAbstract = idAbstract;
     this.idKeyword = idKeyword;
     this.idCitation = idCitation;
-  //  this.varType = varType;
+  //  this.varType = varType;  is data type
     this.comment=comment; 
     this.idParameter=parameter;
     this.idUnit=unit;

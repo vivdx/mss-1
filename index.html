@@ -311,27 +311,7 @@
               <span class="help-inline" id="suComment" rel="clickover"><i class="icon-info-sign"></i></span>
             </div>
            </div>
-			
-           <!--Statistical Variable Type-->
-           <div class="control-group">
-            <label class="control-label" for="VarTypeID">Variable Type</label>
-            <div class="controls">
-              <select id="VarTypeID">
-                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#SpatialPointPattern">Spatial Point Pattern</option>
-                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#TemporalPointPattern">Temporal Point Pattern</option>
-                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#SpatioTemporalPointPattern">Spatiotemporal Point Pattern</option>
-                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedSpatialPointPattern">Marked Spatial Point Pattern</option>
-                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedTemporalPointPattern">Marked Temporal Point Pattern</option>
-                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedSpatioTemporalPointPattern">Marked Spatiotemporal Point Pattern</option>
-                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#GeostatisticalVariable">Field Data</option>
-                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#LatticeVariable">Lattice Data</option>
-                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#Trajectory">Trajectories</option>
-                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedTrajectory">Marked Trajectories</option>
-              </select>
-              <span class="help-inline" id="varTypeInfo" rel="clickover"><i class="icon-info-sign"></i></span>
-            </div>
-           </div>
-			
+			           		
            <div class="controls">
               <button id="addInfoBtn" type="button" class="btn" data-toggle="collapse" data-target="#additionalInfoContainer">Add additional information</button>
               <span class="help-inline" id="addInfoInfo" rel="clickover"><i class="icon-info-sign"></i></span>
@@ -352,8 +332,22 @@
 				<table id="myTable" class="table table-striped table table-bordered table table-condensed span4">
 					<tbody id="parameterBody" class="parameters">
 						<tr>
-							<td><input class="input-xlarge form-inline idParameter" type="text" placeholder="Parameter"></td>
-							<td><input class="input-xlarge form-inline idUnit" type="text" placeholder="Unit"></td>
+							<td style="max-width:120px;"><input class="input-xlarge form-inline idParameter" type="text" placeholder="Parameter"></td>
+							<td style="max-width:120px;"><input class="input-xlarge form-inline idUnit" type="text" placeholder="Unit"></td>
+              <td>
+				<select id="VarTypeIDSelector" class="idVarType">
+                    <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#SpatialPointPattern">Spatial Point Pattern</option>
+	                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#TemporalPointPattern">Temporal Point Pattern</option>
+	                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#SpatioTemporalPointPattern">Spatiotemporal Point Pattern</option>
+	                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedSpatialPointPattern">Marked Spatial Point Pattern</option>
+	                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedTemporalPointPattern">Marked Temporal Point Pattern</option>
+	                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedSpatioTemporalPointPattern">Marked Spatiotemporal Point Pattern</option>
+	                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#GeostatisticalVariable">Field Data</option>
+	                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#LatticeVariable">Lattice Data</option>
+	                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#Trajectory">Trajectories</option>
+	                <option value="http://www.meaningfulspatialstatistics.org/theories/MeaningfulSpatialStatistics.owl#MarkedTrajectory">Marked Trajectories</option>
+                   </select>
+              </td>
 							<td><span id="addPara" class="btn" rel="clickover" value="Append"><i class="icon-plus-sign"></i></span></td>
 							<td><span id="remPara" class="btn" rel="clickover" value="Remove"><i class="icon-minus-sign"></i></span></td>
 						</tr>
