@@ -52,17 +52,17 @@ $("#entrySubmitButton").click(function(){
   var endDate = new Date($('#endpicker').data('datetimepicker').getDate());
 
    if (isTemporalString(varType)
-    &&(
-      (beginDate.getTime()==endDate.getTime())
-      ||endDate<beginDate)){
+     &&(
+    (beginDate.getTime()==endDate.getTime())
+    ||endDate<beginDate)){
     alert("Please specify time period for temporal observed window! Begin date needs to be before end date!");
-    return;
+   return;
   }
 
   var entry = new Entry(sourceUrl,format,idVarType,license,phenUri,wktObsWin,beginDate.toUTCString(),
                         endDate.toUTCString(),idTitle,idProject,idInstituteURL,idAuthor,idAbstract,
                         idKeyword,idCitation,comment,idParameter,idUnit);
- // console.log(entry);
+  console.log(entry);
  // var entryJSON = JSON.stringify(entry);
  // console.log(entryJSON);
 
@@ -164,9 +164,9 @@ $("#mapPanelBtn").click(function(){
      */
     if (!mapAdd){
       $("#mapPanelAdd").css("height","400px");
-  	 mapAdd = L.map("mapPanelAdd").setView([51.505, -0.09], 13);
+  	 mapAdd = L.map("mapPanelAdd").setView([51.950, 7.6240], 13);
 	 // L.tileLayer('http://{s}.tile.cloudmade.com/c69899fe599542e9ba5cdc63d9a3870c/997/256/{z}/{x}/{y}.png',
-     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      L.tileLayer('http://{s}.tiles.mapbox.com/v3/vdixit.id16bnni/{z}/{x}/{y}.png', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
       maxZoom: 18
       }).addTo(mapAdd);
