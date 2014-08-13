@@ -46,7 +46,7 @@ $("#entrySubmitButton").click(function(){
 
 
   if (epsgCode!=""){
-    wktObsWin = "<![CDATA[<http://www.opengis.net/def/crs/EPSG/0/"+epsgCode+">"+wktObsWin+"]]>"
+    wktObsWin = "<http://www.opengis.net/def/crs/EPSG/0/"+epsgCode+">"+wktObsWin+""
   }
   var beginDate = new Date($('#beginpicker').data('datetimepicker').getDate());
   var endDate = new Date($('#endpicker').data('datetimepicker').getDate());
